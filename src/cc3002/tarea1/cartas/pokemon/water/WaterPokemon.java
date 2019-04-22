@@ -10,8 +10,8 @@ import cc3002.tarea1.cartas.pokemon.grass.GrassPokemon;
 import java.util.List;
 
 public class WaterPokemon extends AbstractPokemon {
-    public WaterPokemon(String name, int hp, List<Attack> attackList) {
-        super(name, hp, attackList);
+    public WaterPokemon(int id, int hp, List<Attack> attackList) {
+        super(id, hp, attackList);
     }
 
     @Override

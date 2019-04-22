@@ -9,8 +9,8 @@ import cc3002.tarea1.cartas.pokemon.psychic.PsychicPokemon;
 import java.util.List;
 
 public class FightingPokemon extends AbstractPokemon {
-    public FightingPokemon(String name, int hp, List<Attack> attackList) {
-        super(name, hp, attackList);
+    public FightingPokemon(int id, int hp, List<Attack> attackList) {
+        super(id, hp, attackList);
     }
 
     @Override

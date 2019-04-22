@@ -8,8 +8,8 @@ import cc3002.tarea1.cartas.pokemon.fighting.FightingPokemon;
 import java.util.List;
 
 public class LightingPokemon extends AbstractPokemon {
-    public LightingPokemon(String name, int hp, List<Attack> attackList) {
-        super(name, hp, attackList);
+    public LightingPokemon(int id, int hp, List<Attack> attackList) {
+        super(id, hp, attackList);
     }
 
     @Override

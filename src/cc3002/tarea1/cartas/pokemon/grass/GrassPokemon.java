@@ -10,8 +10,8 @@ import java.util.List;
 
 public class GrassPokemon extends AbstractPokemon {
 
-    protected GrassPokemon(String name, int hp, List<Attack> attackList) {
-        super(name, hp, attackList);
+    public GrassPokemon(int id, int hp, List<Attack> attackList) {
+        super(id, hp, attackList);
     }
 
     @Override

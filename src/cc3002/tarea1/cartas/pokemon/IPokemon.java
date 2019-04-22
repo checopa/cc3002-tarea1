@@ -16,10 +16,10 @@ import java.util.List;
  */
 public interface IPokemon {
     /**
-     * Getter for the pokemon's name.
+     * Getter for the pokemon's id.
      * @return Name of the pokemon
      */
-    String getName();
+    int getId();
 
     /**
      * Getter for the pokemon's hp
@@ -162,6 +162,12 @@ public interface IPokemon {
      * @return
      */
     boolean cantAttack();
+
+    /**
+     * Whether the entity is alive or not
+     * @return true if the entity is alive, false if not.
+     */
+    boolean isAlive();
 
 
 }

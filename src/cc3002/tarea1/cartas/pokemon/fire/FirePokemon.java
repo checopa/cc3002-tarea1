@@ -9,8 +9,8 @@ import java.util.List;
 
 public class FirePokemon extends AbstractPokemon {
 
-    public FirePokemon(String name, int hp, List<Attack> attackList) {
-        super(name, hp, attackList);
+    public FirePokemon(int id, int hp, List<Attack> attackList) {
+        super(id, hp, attackList);
     }
 
     @Override

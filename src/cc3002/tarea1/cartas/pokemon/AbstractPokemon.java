@@ -1,10 +1,11 @@
 package cc3002.tarea1.cartas.pokemon;
 
 
-import cc3002.tarea1.cartas.pokemon.lighting.LightingPokemon;
+import cc3002.tarea1.cartas.ICard;
 import cc3002.tarea1.cartas.pokemon.fighting.FightingPokemon;
 import cc3002.tarea1.cartas.pokemon.fire.FirePokemon;
 import cc3002.tarea1.cartas.pokemon.grass.GrassPokemon;
+import cc3002.tarea1.cartas.pokemon.lighting.LightingPokemon;
 import cc3002.tarea1.cartas.pokemon.psychic.PsychicPokemon;
 import cc3002.tarea1.cartas.pokemon.water.WaterPokemon;
 
@@ -13,8 +14,8 @@ import java.util.List;
 import java.util.Map;
 
 
-public abstract class AbstractPokemon implements IPokemon {
-    private String name;
+public abstract class AbstractPokemon implements IPokemon, ICard {
+    private int id;
     private int hp;
     private List<Attack> attackList;
     private Attack selectedAttack;
@@ -23,13 +24,12 @@ public abstract class AbstractPokemon implements IPokemon {
 
     /**
      * Creates a new pokemon
-     *
-     * @param name       Pokemon's name
-     * @param hp         Pokemon's hit point
-     * @param attackList Pokemon's attacks
+     * @param id
+     * @param hp
+     * @param attackList
      */
-    protected AbstractPokemon(String name, int hp, List<Attack> attackList) {
-        this.name = name;
+    protected AbstractPokemon(int id, int hp, List<Attack> attackList) {
+        this.id = id;
         this.hp = hp;
         this.attackList = attackList;
         countEnergies.put("Water", 0);
@@ -41,13 +41,18 @@ public abstract class AbstractPokemon implements IPokemon {
     }
 
     @Override
-    public String getName() {
-        return this.name;
+    public int getId() {
+        return this.id;
     }
 
     @Override
     public int getHP() {
         return this.hp;
+    }
+
+    @Override
+    public boolean isAlive() {
+        return this.hp>0;
     }
 
     @Override
@@ -107,6 +112,9 @@ public abstract class AbstractPokemon implements IPokemon {
      */
     protected void receiveAttack(IPokemon attack) {
         this.hp -= attack.getSelectedAttack().getBaseDamage();
+        if(getHP()<0){
+            this.hp=0;
+        }
     }
 
     /**
@@ -116,6 +124,9 @@ public abstract class AbstractPokemon implements IPokemon {
      */
     protected void receiveWeaknessAttack(IPokemon attack) {
         this.hp -= attack.getSelectedAttack().getBaseDamage() * 2;
+        if(getHP()<0){
+            this.hp=0;
+        }
     }
 
     /**
@@ -125,6 +136,9 @@ public abstract class AbstractPokemon implements IPokemon {
      */
     protected void receiveResistanAttack(IPokemon attack) {
         this.hp -= attack.getSelectedAttack().getBaseDamage() - 30;
+        if(getHP()<0){
+            this.hp=0;
+        }
     }
 
     @Override
