@@ -1,24 +1,32 @@
 package cc3002.tarea1.cartas.pokemon.fighting;
 
 import cc3002.tarea1.cartas.pokemon.AbstractPokemon;
-import cc3002.tarea1.cartas.pokemon.IAttack;
-import cc3002.tarea1.cartas.pokemon.grass.GrassAttack;
-import cc3002.tarea1.cartas.pokemon.psychic.PsychicAttack;
+import cc3002.tarea1.cartas.pokemon.Attack;
+import cc3002.tarea1.cartas.pokemon.IPokemon;
+import cc3002.tarea1.cartas.pokemon.grass.GrassPokemon;
+import cc3002.tarea1.cartas.pokemon.psychic.PsychicPokemon;
 
 import java.util.List;
 
 public class FightingPokemon extends AbstractPokemon {
-    public FightingPokemon(String name, int hp, List<IAttack> attackList) {
+    public FightingPokemon(String name, int hp, List<Attack> attackList) {
         super(name, hp, attackList);
     }
 
     @Override
-    public void receiveGrassAttack(GrassAttack attack) {
+    public void attack(IPokemon pokemon) {
+        if(this.cantAttack()) {
+            pokemon.receiveFightingAttack(this);
+        }
+    }
+
+    @Override
+    public void receiveGrassAttack(GrassPokemon attack) {
         this.receiveWeaknessAttack(attack);
     }
 
     @Override
-    public void receivePsychicAttack(PsychicAttack attack) {
+    public void receivePsychicAttack(PsychicPokemon attack) {
         this.receiveWeaknessAttack(attack);
     }
 }

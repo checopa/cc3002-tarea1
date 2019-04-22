@@ -1,10 +1,12 @@
 package cc3002.tarea1.cartas.pokemon;
-import cc3002.tarea1.cartas.pokemon.electric.ElectricAttack;
-import cc3002.tarea1.cartas.pokemon.fighting.FightingAttack;
-import cc3002.tarea1.cartas.pokemon.fire.FireAttack;
-import cc3002.tarea1.cartas.pokemon.grass.GrassAttack;
-import cc3002.tarea1.cartas.pokemon.psychic.PsychicAttack;
-import cc3002.tarea1.cartas.pokemon.water.WaterAttack;
+
+
+import cc3002.tarea1.cartas.pokemon.lighting.LightingPokemon;
+import cc3002.tarea1.cartas.pokemon.fighting.FightingPokemon;
+import cc3002.tarea1.cartas.pokemon.fire.FirePokemon;
+import cc3002.tarea1.cartas.pokemon.grass.GrassPokemon;
+import cc3002.tarea1.cartas.pokemon.psychic.PsychicPokemon;
+import cc3002.tarea1.cartas.pokemon.water.WaterPokemon;
 
 import java.util.List;
 
@@ -29,13 +31,13 @@ public interface IPokemon {
      * Getter for the pokemon's attacks
      * @return Attacks of the pokemon
      */
-    List<IAttack> getAttacks();
+    List<Attack> getAttacks();
 
     /**
      * Getter for the attack selected
      * @return Attack selected
      */
-    IAttack getSelectedAttack();
+    Attack getSelectedAttack();
 
     /**
      * Attack another pokemon
@@ -54,45 +56,45 @@ public interface IPokemon {
      *
      * @param attack Received attack.
      */
-    void receiveWaterAttack(WaterAttack attack);
+    void receiveWaterAttack(WaterPokemon attack);
 
     /**
      * Receives damage from a grass attack.
      *
      * @param attack Received attack.
      */
-    void receiveGrassAttack(GrassAttack attack);
+    void receiveGrassAttack(GrassPokemon attack);
 
     /**
      * Receives damage from a fire attack.
      *
      * @param attack Received attack.
      */
-    void receiveFireAttack(FireAttack attack);
+    void receiveFireAttack(FirePokemon attack);
 
     /**
-     * Receives damage from a electric attack.
+     * Receives damage from a Lighting attack.
      *
      * @param attack Received attack.
      */
-    void receiveElectricAttack(ElectricAttack attack);
+    void receiveLightingAttack(LightingPokemon attack);
 
     /**
      * Receives damage from a fight attack
      * @param attack Received attack.
      */
-    void receiveFightingAttack(FightingAttack attack);
+    void receiveFightingAttack(FightingPokemon attack);
 
     /**
      * Receives damage from a psychic attack
      * @param attack Received attack.
      */
-    void receivePsychicAttack(PsychicAttack attack);
+    void receivePsychicAttack(PsychicPokemon attack);
 
     /**
-     * Receive electric energy
+     * Receive Lighting energy
      */
-    void receiveElectricEnergy();
+    void receiveLightingEnergy();
 
     /**
      * Receive fighting energy
@@ -118,6 +120,48 @@ public interface IPokemon {
      * REceive water energy
      */
     void receiveWaterEnergy();
+
+    /**
+     * returns the amount of Lighting energy
+     * @return
+     */
+    int getLightingEnergy();
+
+    /**
+     * returns the amount of grass energy
+     * @return
+     */
+    int getGrassEnergy();
+
+    /**
+     * returns the amount of fighting energy
+     * @return
+     */
+    int getFightingEnergy();
+
+    /**
+     * returns the amount of fire energy
+     * @return
+     */
+    int getFireEnergy();
+
+    /**
+     * returns the amount of water energy
+     * @return
+     */
+    int getWaterEnergy();
+
+    /**
+     * returns the amount of psychic energy
+     * @return
+     */
+    int getPsychicEnergy();
+
+    /**
+     * Return if the pokemon has enough energy to attack
+     * @return
+     */
+    boolean cantAttack();
 
 
 }
