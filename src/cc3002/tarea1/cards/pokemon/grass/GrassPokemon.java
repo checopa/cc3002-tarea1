@@ -1,10 +1,10 @@
 package cc3002.tarea1.cards.pokemon.grass;
 
 import cc3002.tarea1.cards.pokemon.AbstractPokemon;
-import cc3002.tarea1.habilities.Attack;
 import cc3002.tarea1.cards.pokemon.IPokemon;
 import cc3002.tarea1.cards.pokemon.fire.FirePokemon;
 import cc3002.tarea1.cards.pokemon.water.WaterPokemon;
+import cc3002.tarea1.habilities.Attack;
 
 import java.util.List;
 

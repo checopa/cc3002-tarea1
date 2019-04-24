@@ -145,7 +145,10 @@ public abstract class AbstractPokemon implements IPokemon, ICard {
      * @param attack Received attack
      */
     protected void receiveResistanAttack(IPokemon attack) {
-        this.hp -= attack.getSelectedAttack().getBaseDamage() - 30;
+        int hit=attack.getSelectedAttack().getBaseDamage()-30;
+        if(hit>0){
+            this.hp-=hit;
+        }
         if(!isAlive()){
             this.hp=0;
         }
@@ -222,4 +225,9 @@ public abstract class AbstractPokemon implements IPokemon, ICard {
 
 //endregion
 
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof IPokemon && ((IPokemon) obj).getId() == this.id
+                && ((IPokemon) obj).getName().equals(name) && ((IPokemon) obj).getHP()==this.hp && ((IPokemon) obj).getAttacks().equals(this.attackList);
+    }
 }

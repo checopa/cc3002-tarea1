@@ -1,9 +1,9 @@
 package cc3002.tarea1.cards.pokemon.lighting;
 
 import cc3002.tarea1.cards.pokemon.AbstractPokemon;
+import cc3002.tarea1.cards.pokemon.fighting.FightingPokemon;
 import cc3002.tarea1.habilities.Attack;
 import cc3002.tarea1.cards.pokemon.IPokemon;
-import cc3002.tarea1.cards.pokemon.fighting.FightingPokemon;
 
 import java.util.List;
 

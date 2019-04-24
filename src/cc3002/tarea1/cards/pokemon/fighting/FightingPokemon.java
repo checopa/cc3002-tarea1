@@ -1,10 +1,10 @@
 package cc3002.tarea1.cards.pokemon.fighting;
 
 import cc3002.tarea1.cards.pokemon.AbstractPokemon;
+import cc3002.tarea1.cards.pokemon.psychic.PsychicPokemon;
 import cc3002.tarea1.habilities.Attack;
 import cc3002.tarea1.cards.pokemon.IPokemon;
 import cc3002.tarea1.cards.pokemon.grass.GrassPokemon;
-import cc3002.tarea1.cards.pokemon.psychic.PsychicPokemon;
 
 import java.util.List;
 

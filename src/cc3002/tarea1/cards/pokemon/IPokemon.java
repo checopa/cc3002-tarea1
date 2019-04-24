@@ -1,9 +1,9 @@
 package cc3002.tarea1.cards.pokemon;
 
 
-import cc3002.tarea1.cards.pokemon.lighting.LightingPokemon;
 import cc3002.tarea1.cards.pokemon.fighting.FightingPokemon;
 import cc3002.tarea1.cards.pokemon.fire.FirePokemon;
+import cc3002.tarea1.cards.pokemon.lighting.LightingPokemon;
 import cc3002.tarea1.cards.pokemon.grass.GrassPokemon;
 import cc3002.tarea1.cards.pokemon.psychic.PsychicPokemon;
 import cc3002.tarea1.cards.pokemon.water.WaterPokemon;
@@ -16,9 +16,16 @@ import java.util.List;
  *
  */
 public interface IPokemon {
+
+    /**
+     * Getter for the pokemon's name.
+     * @return Name of the pokemon
+     */
+    String getName();
+
     /**
      * Getter for the pokemon's id.
-     * @return Name of the pokemon
+     * @return Id of the pokemon
      */
     int getId();
 
