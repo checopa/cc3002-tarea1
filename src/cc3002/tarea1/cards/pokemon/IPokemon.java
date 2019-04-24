@@ -1,12 +1,13 @@
-package cc3002.tarea1.cartas.pokemon;
+package cc3002.tarea1.cards.pokemon;
 
 
-import cc3002.tarea1.cartas.pokemon.lighting.LightingPokemon;
-import cc3002.tarea1.cartas.pokemon.fighting.FightingPokemon;
-import cc3002.tarea1.cartas.pokemon.fire.FirePokemon;
-import cc3002.tarea1.cartas.pokemon.grass.GrassPokemon;
-import cc3002.tarea1.cartas.pokemon.psychic.PsychicPokemon;
-import cc3002.tarea1.cartas.pokemon.water.WaterPokemon;
+import cc3002.tarea1.cards.pokemon.lighting.LightingPokemon;
+import cc3002.tarea1.cards.pokemon.fighting.FightingPokemon;
+import cc3002.tarea1.cards.pokemon.fire.FirePokemon;
+import cc3002.tarea1.cards.pokemon.grass.GrassPokemon;
+import cc3002.tarea1.cards.pokemon.psychic.PsychicPokemon;
+import cc3002.tarea1.cards.pokemon.water.WaterPokemon;
+import cc3002.tarea1.habilities.Attack;
 
 import java.util.List;
 
@@ -123,43 +124,43 @@ public interface IPokemon {
 
     /**
      * returns the amount of Lighting energy
-     * @return
+     * @return pokemon's lighting energy
      */
     int getLightingEnergy();
 
     /**
      * returns the amount of grass energy
-     * @return
+     * @return pokemon's grass energy
      */
     int getGrassEnergy();
 
     /**
      * returns the amount of fighting energy
-     * @return
+     * @return pokemon's fighting energy
      */
     int getFightingEnergy();
 
     /**
      * returns the amount of fire energy
-     * @return
+     * @return pokemon's fir energy
      */
     int getFireEnergy();
 
     /**
      * returns the amount of water energy
-     * @return
+     * @return pokemon's water energy
      */
     int getWaterEnergy();
 
     /**
      * returns the amount of psychic energy
-     * @return
+     * @return pokemon's psychic energy
      */
     int getPsychicEnergy();
 
     /**
      * Return if the pokemon has enough energy to attack
-     * @return
+     * @return trus if the pokemon can attack, false if not
      */
     boolean cantAttack();
 

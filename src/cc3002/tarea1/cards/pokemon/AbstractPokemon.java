@@ -1,13 +1,14 @@
-package cc3002.tarea1.cartas.pokemon;
+package cc3002.tarea1.cards.pokemon;
 
 
-import cc3002.tarea1.cartas.ICard;
-import cc3002.tarea1.cartas.pokemon.fighting.FightingPokemon;
-import cc3002.tarea1.cartas.pokemon.fire.FirePokemon;
-import cc3002.tarea1.cartas.pokemon.grass.GrassPokemon;
-import cc3002.tarea1.cartas.pokemon.lighting.LightingPokemon;
-import cc3002.tarea1.cartas.pokemon.psychic.PsychicPokemon;
-import cc3002.tarea1.cartas.pokemon.water.WaterPokemon;
+import cc3002.tarea1.cards.ICard;
+import cc3002.tarea1.cards.pokemon.fighting.FightingPokemon;
+import cc3002.tarea1.cards.pokemon.fire.FirePokemon;
+import cc3002.tarea1.cards.pokemon.grass.GrassPokemon;
+import cc3002.tarea1.cards.pokemon.lighting.LightingPokemon;
+import cc3002.tarea1.cards.pokemon.psychic.PsychicPokemon;
+import cc3002.tarea1.cards.pokemon.water.WaterPokemon;
+import cc3002.tarea1.habilities.Attack;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.Map;
 
 
 public abstract class AbstractPokemon implements IPokemon, ICard {
+    private String name;
     private int id;
     private int hp;
     private List<Attack> attackList;
@@ -24,11 +26,12 @@ public abstract class AbstractPokemon implements IPokemon, ICard {
 
     /**
      * Creates a new pokemon
-     * @param id
-     * @param hp
-     * @param attackList
+     * @param id pokemon's id
+     * @param hp pokemon's hp
+     * @param attackList pokemon's attack
      */
-    protected AbstractPokemon(int id, int hp, List<Attack> attackList) {
+    protected AbstractPokemon(String name,int id, int hp, List<Attack> attackList) {
+        this.name=name;
         this.id = id;
         this.hp = hp;
         this.attackList = attackList;
@@ -38,6 +41,11 @@ public abstract class AbstractPokemon implements IPokemon, ICard {
         countEnergies.put("Fighting", 0);
         countEnergies.put("Psychic", 0);
         countEnergies.put("Lighting", 0);
+    }
+    //region Properties
+    @Override
+    public String getName() {
+        return this.name;
     }
 
     @Override
@@ -54,7 +62,9 @@ public abstract class AbstractPokemon implements IPokemon, ICard {
     public boolean isAlive() {
         return this.hp>0;
     }
+    //endregion
 
+    //region Attacks
     @Override
     public List<Attack> getAttacks() {
         return this.attackList;
@@ -112,7 +122,7 @@ public abstract class AbstractPokemon implements IPokemon, ICard {
      */
     protected void receiveAttack(IPokemon attack) {
         this.hp -= attack.getSelectedAttack().getBaseDamage();
-        if(getHP()<0){
+        if(!isAlive()){
             this.hp=0;
         }
     }
@@ -124,7 +134,7 @@ public abstract class AbstractPokemon implements IPokemon, ICard {
      */
     protected void receiveWeaknessAttack(IPokemon attack) {
         this.hp -= attack.getSelectedAttack().getBaseDamage() * 2;
-        if(getHP()<0){
+        if(!isAlive()){
             this.hp=0;
         }
     }
@@ -136,11 +146,20 @@ public abstract class AbstractPokemon implements IPokemon, ICard {
      */
     protected void receiveResistanAttack(IPokemon attack) {
         this.hp -= attack.getSelectedAttack().getBaseDamage() - 30;
-        if(getHP()<0){
+        if(!isAlive()){
             this.hp=0;
         }
     }
 
+    @Override
+    public boolean cantAttack() {
+        return getSelectedAttack().getFightingCost() <= getFightingEnergy() && getSelectedAttack().getFireCost() <= getFireEnergy()
+                && getSelectedAttack().getGrassCost() <= getGrassEnergy() && getSelectedAttack().getPsychicCost() <= getPsychicEnergy()
+                && getSelectedAttack().getLightingCost() <= getLightingEnergy() && getSelectedAttack().getWaterCost() <= getWaterEnergy();
+    }
+//endregion
+
+    //region Energy
     @Override
     public void receiveLightingEnergy() {
         countEnergies.put("Lighting", this.getLightingEnergy() + 1);
@@ -201,11 +220,6 @@ public abstract class AbstractPokemon implements IPokemon, ICard {
         return countEnergies.get("Lighting");
     }
 
-    @Override
-    public boolean cantAttack() {
-        return getSelectedAttack().getFightingCost() <= getFightingEnergy() && getSelectedAttack().getFireCost() <= getFireEnergy()
-                && getSelectedAttack().getGrassCost() <= getGrassEnergy() && getSelectedAttack().getPsychicCost() <= getPsychicEnergy()
-                && getSelectedAttack().getLightingCost() <= getLightingEnergy() && getSelectedAttack().getWaterCost() <= getWaterEnergy();
-    }
+//endregion
 
 }
