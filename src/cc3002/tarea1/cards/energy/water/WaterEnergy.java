@@ -3,6 +3,10 @@ package cc3002.tarea1.cards.energy.water;
 import cc3002.tarea1.cards.energy.AbstractEnergy;
 import cc3002.tarea1.cards.pokemon.IPokemon;
 
+/**
+ * @author José Pacheco
+ */
+
 public class WaterEnergy extends AbstractEnergy {
 
     public WaterEnergy(String name) {

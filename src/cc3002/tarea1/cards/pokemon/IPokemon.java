@@ -1,6 +1,7 @@
 package cc3002.tarea1.cards.pokemon;
 
 
+
 import cc3002.tarea1.cards.pokemon.fighting.FightingPokemon;
 import cc3002.tarea1.cards.pokemon.fire.FirePokemon;
 import cc3002.tarea1.cards.pokemon.lighting.LightingPokemon;
@@ -12,9 +13,7 @@ import cc3002.tarea1.habilities.Attack;
 import java.util.List;
 
 
-/**
- *
- */
+
 public interface IPokemon {
 
     /**

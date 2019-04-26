@@ -10,11 +10,14 @@ import cc3002.tarea1.cards.pokemon.psychic.PsychicPokemon;
 import cc3002.tarea1.cards.pokemon.water.WaterPokemon;
 import cc3002.tarea1.habilities.Attack;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * @author José Pacheco
+ */
 public abstract class AbstractPokemon implements IPokemon, ICard {
     private String name;
     private int id;
@@ -25,16 +28,21 @@ public abstract class AbstractPokemon implements IPokemon, ICard {
 
 
     /**
-     * Creates a new pokemon
+     * Abstract class that represents a generic pokemon.
      * @param id pokemon's id
      * @param hp pokemon's hp
      * @param attackList pokemon's attack
      */
-    protected AbstractPokemon(String name,int id, int hp, List<Attack> attackList) {
+    protected AbstractPokemon(String name, int id, int hp, ArrayList<Attack> attackList) {
         this.name=name;
         this.id = id;
         this.hp = hp;
-        this.attackList = attackList;
+        this.attackList=attackList;
+        if (4<this.attackList.size()){
+            for (int i=0;i<this.attackList.size()-4;i++){
+                this.attackList.remove(4);
+            }
+        }
         countEnergies.put("Water", 0);
         countEnergies.put("Grass", 0);
         countEnergies.put("Fire", 0);
@@ -42,7 +50,7 @@ public abstract class AbstractPokemon implements IPokemon, ICard {
         countEnergies.put("Psychic", 0);
         countEnergies.put("Lighting", 0);
     }
-    //region Properties
+        //region Properties
     @Override
     public String getName() {
         return this.name;
