@@ -19,11 +19,11 @@ public class Attack{
      * @param description
      * @param cost
      */
-    public Attack(String name, int baseDamage, String description, HashMap<String,Integer> cost){
-        this.name=name;
-        this.baseDamage=baseDamage;
-        this.description=description;
-        this.cost=cost;
+    public Attack(String name, int baseDamage, String description, HashMap<String,Integer> cost) {
+        this.name = name;
+        this.baseDamage = baseDamage;
+        this.description = description;
+        this.cost = cost;
     }
 
     /**
