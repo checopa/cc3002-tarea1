@@ -14,10 +14,10 @@ public class Attack{
 
     /**
      * Create a new Attack.
-     * @param name
-     * @param baseDamage
-     * @param description
-     * @param cost
+     * @param name atack's name
+     * @param baseDamage base damage of the attack
+     * @param description description of the attack
+     * @param cost cost in energy of the attack
      */
     public Attack(String name, int baseDamage, String description, HashMap<String,Integer> cost) {
         this.name = name;
