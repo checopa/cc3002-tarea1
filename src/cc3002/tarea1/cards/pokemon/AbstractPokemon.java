@@ -2,13 +2,14 @@ package cc3002.tarea1.cards.pokemon;
 
 
 import cc3002.tarea1.cards.ICard;
-import cc3002.tarea1.cards.pokemon.fighting.FightingPokemon;
-import cc3002.tarea1.cards.pokemon.fire.FirePokemon;
-import cc3002.tarea1.cards.pokemon.grass.GrassPokemon;
-import cc3002.tarea1.cards.pokemon.lighting.LightingPokemon;
-import cc3002.tarea1.cards.pokemon.psychic.PsychicPokemon;
-import cc3002.tarea1.cards.pokemon.water.WaterPokemon;
+import cc3002.tarea1.cards.pokemon.fighting.AbstractFightingPokemon;
+import cc3002.tarea1.cards.pokemon.fire.AbstractFirePokemon;
+import cc3002.tarea1.cards.pokemon.grass.AbstractGrassPokemon;
+import cc3002.tarea1.cards.pokemon.lighting.AbstractLightingPokemon;
+import cc3002.tarea1.cards.pokemon.psychic.AbstractPsychicPokemon;
+import cc3002.tarea1.cards.pokemon.water.AbstractWaterPokemon;
 import cc3002.tarea1.habilities.Attack;
+import cc3002.tarea1.trainer.Trainer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -66,6 +67,10 @@ public abstract class AbstractPokemon implements IPokemon, ICard {
         return this.hp;
     }
 
+    public void playACard(Trainer trainer){
+        trainer.playPokemon(this);
+    }
+
     @Override
     public boolean isAlive() {
         return this.hp>0;
@@ -93,33 +98,33 @@ public abstract class AbstractPokemon implements IPokemon, ICard {
     public abstract void attack(IPokemon pokemon);
 
     @Override
-    public void receiveWaterAttack(WaterPokemon attack) {
+    public void receiveWaterAttack(AbstractWaterPokemon attack) {
         this.receiveAttack(attack);
     }
 
     @Override
-    public void receiveGrassAttack(GrassPokemon attack) {
+    public void receiveGrassAttack(AbstractGrassPokemon attack) {
         this.receiveAttack(attack);
 
     }
 
     @Override
-    public void receiveFireAttack(FirePokemon attack) {
+    public void receiveFireAttack(AbstractFirePokemon attack) {
         this.receiveAttack(attack);
     }
 
     @Override
-    public void receiveLightingAttack(LightingPokemon attack) {
+    public void receiveLightingAttack(AbstractLightingPokemon attack) {
         this.receiveAttack(attack);
     }
 
     @Override
-    public void receiveFightingAttack(FightingPokemon attack) {
+    public void receiveFightingAttack(AbstractFightingPokemon attack) {
         this.receiveAttack(attack);
     }
 
     @Override
-    public void receivePsychicAttack(PsychicPokemon attack) {
+    public void receivePsychicAttack(AbstractPsychicPokemon attack) {
         this.receiveAttack(attack);
     }
 

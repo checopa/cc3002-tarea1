@@ -2,7 +2,7 @@ package cc3002.tarea1.cards.pokemon.fire;
 
 import cc3002.tarea1.cards.pokemon.AbstractPokemon;
 import cc3002.tarea1.cards.pokemon.IPokemon;
-import cc3002.tarea1.cards.pokemon.water.WaterPokemon;
+import cc3002.tarea1.cards.pokemon.water.AbstractWaterPokemon;
 import cc3002.tarea1.habilities.Attack;
 
 import java.util.ArrayList;
@@ -11,9 +11,9 @@ import java.util.ArrayList;
  * @author José Pacheco
  */
 
-public class FirePokemon extends AbstractPokemon {
+public class AbstractFirePokemon extends AbstractPokemon {
 
-    public FirePokemon(String name, int id, int hp, ArrayList<Attack> attackList) {
+    public AbstractFirePokemon(String name, int id, int hp, ArrayList<Attack> attackList) {
         super(name, id, hp, attackList);
     }
 
@@ -25,7 +25,7 @@ public class FirePokemon extends AbstractPokemon {
     }
 
     @Override
-    public void receiveWaterAttack(WaterPokemon attack){
+    public void receiveWaterAttack(AbstractWaterPokemon attack){
         this.receiveWeaknessAttack(attack);
     }
 

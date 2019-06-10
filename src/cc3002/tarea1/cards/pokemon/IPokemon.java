@@ -2,25 +2,21 @@ package cc3002.tarea1.cards.pokemon;
 
 
 
-import cc3002.tarea1.cards.pokemon.fighting.FightingPokemon;
-import cc3002.tarea1.cards.pokemon.fire.FirePokemon;
-import cc3002.tarea1.cards.pokemon.lighting.LightingPokemon;
-import cc3002.tarea1.cards.pokemon.grass.GrassPokemon;
-import cc3002.tarea1.cards.pokemon.psychic.PsychicPokemon;
-import cc3002.tarea1.cards.pokemon.water.WaterPokemon;
+import cc3002.tarea1.cards.ICard;
+import cc3002.tarea1.cards.pokemon.fighting.AbstractFightingPokemon;
+import cc3002.tarea1.cards.pokemon.fire.AbstractFirePokemon;
+import cc3002.tarea1.cards.pokemon.lighting.AbstractLightingPokemon;
+import cc3002.tarea1.cards.pokemon.grass.AbstractGrassPokemon;
+import cc3002.tarea1.cards.pokemon.psychic.AbstractPsychicPokemon;
+import cc3002.tarea1.cards.pokemon.water.AbstractWaterPokemon;
 import cc3002.tarea1.habilities.Attack;
 
 import java.util.List;
 
 
 
-public interface IPokemon {
+public interface IPokemon extends ICard {
 
-    /**
-     * Getter for the pokemon's name.
-     * @return Name of the pokemon
-     */
-    String getName();
 
     /**
      * Getter for the pokemon's id.
@@ -63,40 +59,40 @@ public interface IPokemon {
      *
      * @param attack Received attack.
      */
-    void receiveWaterAttack(WaterPokemon attack);
+    void receiveWaterAttack(AbstractWaterPokemon attack);
 
     /**
      * Receives damage from a grass attack.
      *
      * @param attack Received attack.
      */
-    void receiveGrassAttack(GrassPokemon attack);
+    void receiveGrassAttack(AbstractGrassPokemon attack);
 
     /**
      * Receives damage from a fire attack.
      *
      * @param attack Received attack.
      */
-    void receiveFireAttack(FirePokemon attack);
+    void receiveFireAttack(AbstractFirePokemon attack);
 
     /**
      * Receives damage from a Lighting attack.
      *
      * @param attack Received attack.
      */
-    void receiveLightingAttack(LightingPokemon attack);
+    void receiveLightingAttack(AbstractLightingPokemon attack);
 
     /**
      * Receives damage from a fight attack
      * @param attack Received attack.
      */
-    void receiveFightingAttack(FightingPokemon attack);
+    void receiveFightingAttack(AbstractFightingPokemon attack);
 
     /**
      * Receives damage from a psychic attack
      * @param attack Received attack.
      */
-    void receivePsychicAttack(PsychicPokemon attack);
+    void receivePsychicAttack(AbstractPsychicPokemon attack);
 
     /**
      * Receive Lighting energy

@@ -2,7 +2,7 @@ package cc3002.tarea1.cards.pokemon.psychic;
 
 import cc3002.tarea1.cards.pokemon.AbstractPokemon;
 import cc3002.tarea1.cards.pokemon.IPokemon;
-import cc3002.tarea1.cards.pokemon.fighting.FightingPokemon;
+import cc3002.tarea1.cards.pokemon.fighting.AbstractFightingPokemon;
 import cc3002.tarea1.habilities.Attack;
 
 import java.util.ArrayList;
@@ -11,9 +11,9 @@ import java.util.ArrayList;
  * @author José Pacheco
  */
 
-public class PsychicPokemon extends AbstractPokemon {
+public class AbstractPsychicPokemon extends AbstractPokemon {
 
-    public PsychicPokemon(String name, int id, int hp, ArrayList<Attack> attackList) {
+    public AbstractPsychicPokemon(String name, int id, int hp, ArrayList<Attack> attackList) {
         super(name, id, hp, attackList);
     }
 
@@ -25,12 +25,12 @@ public class PsychicPokemon extends AbstractPokemon {
     }
 
     @Override
-    public void receiveFightingAttack(FightingPokemon attack) {
+    public void receiveFightingAttack(AbstractFightingPokemon attack) {
         this.receiveResistanAttack(attack);
     }
 
     @Override
-    public void receivePsychicAttack(PsychicPokemon attack) {
+    public void receivePsychicAttack(AbstractPsychicPokemon attack) {
         this.receiveWeaknessAttack(attack);
     }
 }

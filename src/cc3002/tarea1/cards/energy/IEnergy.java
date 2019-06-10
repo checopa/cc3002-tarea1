@@ -1,13 +1,9 @@
 package cc3002.tarea1.cards.energy;
 
+import cc3002.tarea1.cards.ICard;
 import cc3002.tarea1.cards.pokemon.IPokemon;
 
-public interface IEnergy {
-    /**
-     * Getter for the energy's name.
-     * @return Name of the energy
-     */
-    String getName();
+public interface IEnergy extends ICard {
     /**
      * Use a energy card.
      * @param pokemon

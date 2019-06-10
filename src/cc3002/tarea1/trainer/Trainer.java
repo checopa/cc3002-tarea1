@@ -1,6 +1,8 @@
 package cc3002.tarea1.trainer;
 
+import cc3002.tarea1.cards.ICard;
 import cc3002.tarea1.cards.energy.IEnergy;
+import cc3002.tarea1.cards.pokemon.AbstractPokemon;
 import cc3002.tarea1.cards.pokemon.IPokemon;
 import cc3002.tarea1.habilities.Attack;
 
@@ -13,21 +15,21 @@ import java.util.List;
 
 public class Trainer {
     private String name;
-    private List<IPokemon> pokemons;
-    private List<IEnergy> energies;
+    private List<ICard> deck;
+    private List<ICard> hand;
+    private List<ICard> discard;
+    private List<ICard> prizecard;
     private IPokemon activePokemon;
-    private List<IPokemon> banch=new ArrayList<>();
+    private List<IPokemon> bench=new ArrayList<>();
 
     /**
-     *Create a new Trainer
-     * @param name Trainer's name
-     * @param pokemons List of trainer's pookemons
-     * @param energies List of trainer's energies
+     * Create a new trainer
+     * @param name trainer's name
+     * @param deck trainer's deck
      */
-    public Trainer(String name, ArrayList<IPokemon> pokemons,ArrayList<IEnergy> energies) {
+    public Trainer(String name, ArrayList<ICard> deck) {
         this.name=name;
-        this.pokemons=pokemons;
-        this.energies=energies;
+        this.deck=deck;
     }
 
     /**
@@ -45,13 +47,33 @@ public class Trainer {
         }
     }
 
-    /**
-     * Select Select the active pokemon
-     * @param index The pokemon's index
-     */
-    public void selectActivePokemon(int index){
-        this.activePokemon = pokemons.get(index);
-        pokemons.remove(index);
+    private ICard draw(){
+        ICard card=deck.get(0);
+        deck.remove(0);
+        return card;
+    }
+
+    public void discardCard(ICard card){
+        discard.add(card);
+    }
+
+    public void addToPrize(){
+        if(prizecard.size()<6){
+            for(int i=0;i<6;i++){
+                this.prizecard.add(draw());
+            }
+        }
+    }
+
+    public void play(ICard card){
+        if(this.hand!=null) {
+            hand.remove(card);
+            card.playACard(this);
+        }
+    }
+
+    public void addToHand(){
+        this.hand.add(draw());
     }
 
     /**
@@ -79,29 +101,15 @@ public class Trainer {
     }
 
     /**
-     * Getter for the trainer's pokemons
-     * @return trainer's pokemons
+     * Getter for the trainer's hand
+     * @return trainer's hand
      */
-    public List<IPokemon> getPokemons(){
-        return this.pokemons;
+    public List<ICard> getHand(){
+        return this.hand;
     }
 
-    /**
-     * Getter for the trainer's energies
-     * @return Trainer's energies
-     */
-    public List<IEnergy> getEnergies(){
-        return this.energies;
-    }
 
-    /**
-     * Pokemon rceive energy
-     * @param index energy's index
-     */
-    public void implementEnergy(int index){
-        energies.get(index).useEnergyCard(this.activePokemon);
-        energies.remove(index);
-    }
+
 
     /**
      * getter for the active pokemon
@@ -111,31 +119,31 @@ public class Trainer {
         return this.activePokemon;
     }
 
-    /**
-     * add pokemon to the banch
-     * @param index pokemon's index to add to banch
-     */
-    public void addToBanch(int index){
-        if (banch.size()<=5){
-            banch.add(pokemons.get(index));
-            pokemons.remove(index);
-        }
-    }
+
 
     /**
-     * Getter for the trainer's banch
-     * @return Trainer's banch
+     * Getter for the trainer's bench
+     * @return Trainer's bench
      */
-    public List<IPokemon> getBanch(){
-        return this.banch;
+    public List<IPokemon> getBench(){
+        return this.bench;
     }
 
     /**
      * Change active pokemon when the active pokemon die
      */
     public void changeActivePokemon(){
-        activePokemon=banch.get(0);
-        banch.remove(0);
+        discardCard(activePokemon);
+        activePokemon=bench.get(0);
+        bench.remove(0);
     }
 
+    public void playPokemon(IPokemon pokemon) {
+        if(this.getActivePokemon()==null){
+            activePokemon=pokemon;
+        }
+        else if(bench.size()<5){
+            bench.add(pokemon);
+        }
+    }
 }

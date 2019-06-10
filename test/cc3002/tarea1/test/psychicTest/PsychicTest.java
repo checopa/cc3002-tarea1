@@ -1,10 +1,10 @@
 package cc3002.tarea1.test.psychicTest;
 
 import cc3002.tarea1.cards.pokemon.IPokemon;
-import cc3002.tarea1.cards.pokemon.fighting.FightingPokemon;
-import cc3002.tarea1.cards.pokemon.grass.GrassPokemon;
-import cc3002.tarea1.cards.pokemon.psychic.PsychicPokemon;
-import cc3002.tarea1.cards.pokemon.water.WaterPokemon;
+import cc3002.tarea1.cards.pokemon.fighting.AbstractFightingPokemon;
+import cc3002.tarea1.cards.pokemon.grass.AbstractGrassPokemon;
+import cc3002.tarea1.cards.pokemon.psychic.AbstractPsychicPokemon;
+import cc3002.tarea1.cards.pokemon.water.AbstractWaterPokemon;
 import cc3002.tarea1.habilities.Attack;
 import cc3002.tarea1.trainer.Trainer;
 import org.junit.Before;
@@ -26,11 +26,11 @@ public class PsychicTest {
     public void setUp(){
         firstAttack=new Attack("First",40,"First Attack",firstCost=new HashMap<String,Integer>(){{put("Water",0);put("Fire",0);put("Fighting",0);put("Grass",0);put("Psychic",0);put("Lighting",0);}});
         secondAttack=new Attack("Second",40,"Second Attack",firstCost=new HashMap<String,Integer>(){{put("Water",0);put("Fire",0);put("Fighting",0);put("Grass",0);put("Psychic",0);put("Lighting",0);}});
-        psychicPokemon=new PsychicPokemon("Psychic",002,100,new ArrayList<>(Arrays.asList(firstAttack,secondAttack)));
-        grassPokemon=new GrassPokemon("Grass",003,100,new ArrayList<>(Arrays.asList(firstAttack,secondAttack)));
-        waterPokemon=new WaterPokemon("Water",004,100,new ArrayList<>(Arrays.asList(firstAttack,secondAttack)));
-        psychic2Pokemon=new PsychicPokemon("Psychic2",005,100,new ArrayList<>(Arrays.asList(firstAttack,secondAttack)));
-        fightingPokemon=new FightingPokemon("Fire",001,100,new ArrayList<>(Arrays.asList(firstAttack,secondAttack)));
+        psychicPokemon=new AbstractPsychicPokemon("Psychic",002,100,new ArrayList<>(Arrays.asList(firstAttack,secondAttack)));
+        grassPokemon=new AbstractGrassPokemon("Grass",003,100,new ArrayList<>(Arrays.asList(firstAttack,secondAttack)));
+        waterPokemon=new AbstractWaterPokemon("Water",004,100,new ArrayList<>(Arrays.asList(firstAttack,secondAttack)));
+        psychic2Pokemon=new AbstractPsychicPokemon("Psychic2",005,100,new ArrayList<>(Arrays.asList(firstAttack,secondAttack)));
+        fightingPokemon=new AbstractFightingPokemon("Fire",001,100,new ArrayList<>(Arrays.asList(firstAttack,secondAttack)));
         firstTrainer=new Trainer("Ash",new ArrayList<>(Arrays.asList(psychic2Pokemon,grassPokemon)),new ArrayList<>());
         secondTrainer=new Trainer("Ashn't",new ArrayList<>(Arrays.asList(psychicPokemon,fightingPokemon,waterPokemon)),new ArrayList<>());
 
