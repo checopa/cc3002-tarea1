@@ -6,7 +6,7 @@ import cc3002.tarea1.cards.pokemon.IPokemon;
 public interface IEnergy extends ICard {
     /**
      * Use a energy card.
-     * @param pokemon
+     * @param pokemon pokemon that receive the energy
      */
     void useEnergyCard(IPokemon pokemon);
 }

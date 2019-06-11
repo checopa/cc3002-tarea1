@@ -1,5 +1,6 @@
 package cc3002.tarea1.cards.energy;
 
+import cc3002.tarea1.cards.AbstractCard;
 import cc3002.tarea1.cards.ICard;
 import cc3002.tarea1.cards.pokemon.IPokemon;
 import cc3002.tarea1.trainer.Trainer;
@@ -8,7 +9,7 @@ import cc3002.tarea1.trainer.Trainer;
  * @author José Pacheco
  */
 
-public abstract class AbstractEnergy implements IEnergy, ICard {
+public abstract class AbstractEnergy extends AbstractCard implements IEnergy {
     String name;
 
     /**
@@ -16,7 +17,7 @@ public abstract class AbstractEnergy implements IEnergy, ICard {
      * @param name Energy's name
      */
     protected AbstractEnergy(String name){
-        this.name=name;
+        super(name);
 
     }
 
@@ -26,10 +27,6 @@ public abstract class AbstractEnergy implements IEnergy, ICard {
         }
     }
 
-    @Override
-    public String getName() {
-        return this.name;
-    }
 
     @Override
     public abstract void useEnergyCard(IPokemon pokemon);

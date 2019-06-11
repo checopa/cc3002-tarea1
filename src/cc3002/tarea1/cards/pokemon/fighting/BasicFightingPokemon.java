@@ -9,4 +9,7 @@ public class BasicFightingPokemon extends AbstractFightingPokemon implements IBa
     public BasicFightingPokemon(String name, int id, int hp, ArrayList<Attack> attackList) {
         super(name, id, hp, attackList);
     }
+
+
+
 }

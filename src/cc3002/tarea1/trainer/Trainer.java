@@ -15,6 +15,7 @@ import java.util.List;
 
 public class Trainer {
     private String name;
+    private IPokemon selectedPokemon;
     private List<ICard> deck;
     private List<ICard> hand;
     private List<ICard> discard;
@@ -40,6 +41,10 @@ public class Trainer {
         return this.name;
     }
 
+    /**
+     * A trainer attacks to another trainer
+     * @param trainer trainer that receive the attack
+     */
     public void attackTrainer(Trainer trainer){
         this.getActivePokemon().attack(trainer.getActivePokemon());
         if(!trainer.getActivePokemon().isAlive()){
@@ -49,14 +54,22 @@ public class Trainer {
 
     private ICard draw(){
         ICard card=deck.get(0);
+        card.setTrainer(this);
         deck.remove(0);
         return card;
     }
 
+    /**
+     * Add card to discard stack
+     * @param card card that is add to discard stack.
+     */
     public void discardCard(ICard card){
         discard.add(card);
     }
 
+    /**
+     * Add six cards to list of prize.
+     */
     public void addToPrize(){
         if(prizecard.size()<6){
             for(int i=0;i<6;i++){
@@ -65,6 +78,33 @@ public class Trainer {
         }
     }
 
+    /**
+     * Select pokemon that receive energies or a evolution
+     * @param pokemon pokemon that receive energy or a evolution
+     */
+    public void setSelectedPokemon(IPokemon pokemon){
+        this.selectedPokemon=pokemon;
+    }
+
+    /**
+     * get the selected pokemon
+     * @return seleted pokemon
+     */
+    public IPokemon getSelectedPokemon(){
+        return this.selectedPokemon;
+    }
+
+    /**
+     * Deselected a pokemon
+     */
+    public void deselectedPokemon(){
+        this.selectedPokemon=null;
+    }
+
+    /**
+     * Play a card
+     * @param card Card that is played
+     */
     public void play(ICard card){
         if(this.hand!=null) {
             hand.remove(card);
@@ -72,6 +112,9 @@ public class Trainer {
         }
     }
 
+    /**
+     * Add card to the hand.
+     */
     public void addToHand(){
         this.hand.add(draw());
     }

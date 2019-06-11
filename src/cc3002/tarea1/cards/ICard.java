@@ -14,4 +14,15 @@ public interface ICard {
      * @param trainer Trainer that play a card
      */
     void playACard(Trainer trainer);
+
+    /**
+     * Set a card's trainer
+     * @param trainer trainer that play the card
+     */
+    void setTrainer(Trainer trainer);
+
+    /**
+     * Get a car's trainer
+     */
+    Trainer getTrainer();
 }

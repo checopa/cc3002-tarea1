@@ -1,7 +1,7 @@
 package cc3002.tarea1.cards.pokemon;
 
 
-import cc3002.tarea1.cards.ICard;
+import cc3002.tarea1.cards.AbstractCard;
 import cc3002.tarea1.cards.pokemon.fighting.AbstractFightingPokemon;
 import cc3002.tarea1.cards.pokemon.fire.AbstractFirePokemon;
 import cc3002.tarea1.cards.pokemon.grass.AbstractGrassPokemon;
@@ -19,7 +19,7 @@ import java.util.Map;
 /**
  * @author José Pacheco
  */
-public abstract class AbstractPokemon implements IPokemon, ICard {
+public abstract class AbstractPokemon extends AbstractCard implements IPokemon{
     private String name;
     private int id;
     private int hp;
@@ -35,7 +35,7 @@ public abstract class AbstractPokemon implements IPokemon, ICard {
      * @param attackList pokemon's attack
      */
     protected AbstractPokemon(String name, int id, int hp, ArrayList<Attack> attackList) {
-        this.name=name;
+        super(name);
         this.id = id;
         this.hp = hp;
         this.attackList=attackList;
@@ -52,10 +52,6 @@ public abstract class AbstractPokemon implements IPokemon, ICard {
         countEnergies.put("Lighting", 0);
     }
         //region Properties
-    @Override
-    public String getName() {
-        return this.name;
-    }
 
     @Override
     public int getId() {
@@ -236,7 +232,12 @@ public abstract class AbstractPokemon implements IPokemon, ICard {
         return countEnergies.get("Lighting");
     }
 
-//endregion
+    @Override
+    public Map<String, Integer> getEnergies() {
+        return countEnergies;
+    }
+
+    //endregion
 
     @Override
     public boolean equals(Object obj) {

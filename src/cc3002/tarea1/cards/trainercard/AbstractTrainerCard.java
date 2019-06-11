@@ -1,19 +1,17 @@
 package cc3002.tarea1.cards.trainercard;
 
-public abstract class AbstractTrainerCard implements ITrainerCard {
+import cc3002.tarea1.cards.AbstractCard;
+
+public abstract class AbstractTrainerCard extends AbstractCard implements ITrainerCard {
     private String name;
     private String description;
 
 
     protected AbstractTrainerCard(String name,String description){
-        this.name=name;
+        super(name);
         this.description=description;
     }
 
-    @Override
-    public String getName(){
-        return this.name;
-    }
 
     @Override
     public String getDescription(){

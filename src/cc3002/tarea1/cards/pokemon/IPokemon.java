@@ -12,7 +12,7 @@ import cc3002.tarea1.cards.pokemon.water.AbstractWaterPokemon;
 import cc3002.tarea1.habilities.Attack;
 
 import java.util.List;
-
+import java.util.Map;
 
 
 public interface IPokemon extends ICard {
@@ -159,6 +159,12 @@ public interface IPokemon extends ICard {
      * @return pokemon's psychic energy
      */
     int getPsychicEnergy();
+
+    /**
+     * return the amount of energies
+     * @return pokemon's energies
+     */
+    Map<String, Integer> getEnergies();
 
     /**
      * Return if the pokemon has enough energy to attack
