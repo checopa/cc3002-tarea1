@@ -27,7 +27,7 @@ public class AbstractGrassPokemon extends AbstractPokemon {
 
     @Override
     public void receiveWaterAttack(AbstractWaterPokemon attack) {
-        this.receiveResistanAttack(attack);
+        this.receiveResistantAttack(attack);
     }
 
     @Override

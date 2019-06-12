@@ -16,6 +16,7 @@ import java.util.List;
 public class Trainer {
     private String name;
     private IPokemon selectedPokemon;
+    private ICard selectedCard;
     private List<ICard> deck;
     private List<ICard> hand;
     private List<ICard> discard;
@@ -79,8 +80,8 @@ public class Trainer {
     }
 
     /**
-     * Select pokemon that receive energies or a evolution
-     * @param pokemon pokemon that receive energy or a evolution
+     * Select pokemon that receive energies, a evolution or a object
+     * @param pokemon pokemon that receive energy, a evolution or a object
      */
     public void setSelectedPokemon(IPokemon pokemon){
         this.selectedPokemon=pokemon;
@@ -99,6 +100,29 @@ public class Trainer {
      */
     public void deselectedPokemon(){
         this.selectedPokemon=null;
+    }
+
+    /**
+     * Select card that is used
+     * @param card card that is used
+     */
+    public void setSelectedCard(ICard card){
+        this.selectedCard=card;
+    }
+
+    /**
+     * get the selected card
+     * @return get the selected card
+     */
+    public ICard getSelectedCard(){
+        return this.selectedCard;
+    }
+
+    /**
+     * Deselected a card
+     */
+    public void deselectedCard(){
+        this.selectedCard=null;
     }
 
     /**
@@ -160,6 +184,14 @@ public class Trainer {
      */
     public IPokemon getActivePokemon(){
         return this.activePokemon;
+    }
+
+    /**
+     * setter for the active pokemon
+     * @param pokemon pokemon that will be the active
+     */
+    public void setActivePokemon(IPokemon pokemon){
+        this.activePokemon=pokemon;
     }
 
 

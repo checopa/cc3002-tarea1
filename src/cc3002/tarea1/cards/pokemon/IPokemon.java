@@ -10,6 +10,7 @@ import cc3002.tarea1.cards.pokemon.grass.AbstractGrassPokemon;
 import cc3002.tarea1.cards.pokemon.psychic.AbstractPsychicPokemon;
 import cc3002.tarea1.cards.pokemon.water.AbstractWaterPokemon;
 import cc3002.tarea1.habilities.Attack;
+import cc3002.tarea1.visitor.Visitor;
 
 import java.util.List;
 import java.util.Map;
@@ -94,6 +95,9 @@ public interface IPokemon extends ICard {
      */
     void receivePsychicAttack(AbstractPsychicPokemon attack);
 
+
+    void receiveResistantAttack(IPokemon attack);
+
     /**
      * Receive Lighting energy
      */
@@ -167,6 +171,11 @@ public interface IPokemon extends ICard {
     Map<String, Integer> getEnergies();
 
     /**
+     * set the amount of energies
+     */
+    void setEnergies(Map<String, Integer> energies);
+
+    /**
      * Return if the pokemon has enough energy to attack
      * @return trus if the pokemon can attack, false if not
      */
@@ -177,6 +186,7 @@ public interface IPokemon extends ICard {
      * @return true if the entity is alive, false if not.
      */
     boolean isAlive();
+
 
 
 }

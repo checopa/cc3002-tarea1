@@ -10,6 +10,7 @@ import cc3002.tarea1.cards.pokemon.psychic.AbstractPsychicPokemon;
 import cc3002.tarea1.cards.pokemon.water.AbstractWaterPokemon;
 import cc3002.tarea1.habilities.Attack;
 import cc3002.tarea1.trainer.Trainer;
+import cc3002.tarea1.visitor.Visitor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -153,7 +154,7 @@ public abstract class AbstractPokemon extends AbstractCard implements IPokemon{
      *
      * @param attack Received attack
      */
-    protected void receiveResistanAttack(IPokemon attack) {
+    public void receiveResistantAttack(IPokemon attack) {
         int hit=attack.getSelectedAttack().getBaseDamage()-30;
         if(hit>0){
             this.hp-=hit;
@@ -235,6 +236,11 @@ public abstract class AbstractPokemon extends AbstractCard implements IPokemon{
     @Override
     public Map<String, Integer> getEnergies() {
         return countEnergies;
+    }
+
+    @Override
+    public void setEnergies(Map<String, Integer> energies){
+        this.countEnergies=energies;
     }
 
     //endregion

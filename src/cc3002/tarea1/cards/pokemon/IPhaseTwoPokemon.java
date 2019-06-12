@@ -1,5 +1,7 @@
 package cc3002.tarea1.cards.pokemon;
 
+import cc3002.tarea1.visitor.Visitor;
+
 public interface IPhaseTwoPokemon extends IPokemon{
 
     /**
@@ -7,4 +9,6 @@ public interface IPhaseTwoPokemon extends IPokemon{
      * @return pre-evolutions's id
      */
     int getPreEvolutionId();
+
+    void accept(Visitor v);
 }

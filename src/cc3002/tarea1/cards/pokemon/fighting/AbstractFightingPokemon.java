@@ -34,4 +34,5 @@ public class AbstractFightingPokemon extends AbstractPokemon {
     public void receivePsychicAttack(AbstractPsychicPokemon attack) {
         this.receiveWeaknessAttack(attack);
     }
+
 }

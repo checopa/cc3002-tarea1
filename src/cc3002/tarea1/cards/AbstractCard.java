@@ -1,6 +1,7 @@
 package cc3002.tarea1.cards;
 
 import cc3002.tarea1.trainer.Trainer;
+import cc3002.tarea1.visitor.Visitor;
 
 public abstract class AbstractCard  implements ICard{
     private String name;
@@ -26,4 +27,6 @@ public abstract class AbstractCard  implements ICard{
     public void setTrainer(Trainer trainer) {
         this.trainer = trainer;
     }
+
+
 }

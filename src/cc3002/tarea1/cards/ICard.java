@@ -1,6 +1,7 @@
 package cc3002.tarea1.cards;
 
 import cc3002.tarea1.trainer.Trainer;
+import cc3002.tarea1.visitor.Visitor;
 
 public interface ICard {
     /**
@@ -25,4 +26,6 @@ public interface ICard {
      * Get a car's trainer
      */
     Trainer getTrainer();
+
+
 }

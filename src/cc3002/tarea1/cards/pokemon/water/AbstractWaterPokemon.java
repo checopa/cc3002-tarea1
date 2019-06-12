@@ -38,6 +38,6 @@ public class AbstractWaterPokemon extends AbstractPokemon {
 
     @Override
     public void receiveFightingAttack(AbstractFightingPokemon attack){
-        this.receiveResistanAttack(attack);
+        this.receiveResistantAttack(attack);
     }
 }
