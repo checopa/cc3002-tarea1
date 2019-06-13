@@ -5,6 +5,7 @@ import cc3002.tarea1.cards.pokemon.IPokemon;
 import cc3002.tarea1.cards.pokemon.fire.AbstractFirePokemon;
 import cc3002.tarea1.cards.pokemon.water.AbstractWaterPokemon;
 import cc3002.tarea1.habilities.Attack;
+import cc3002.tarea1.visitor.Visitor;
 
 import java.util.ArrayList;
 
@@ -12,7 +13,7 @@ import java.util.ArrayList;
  * @author José Pacheco
  */
 
-public class AbstractGrassPokemon extends AbstractPokemon {
+public abstract class AbstractGrassPokemon extends AbstractPokemon {
 
     public AbstractGrassPokemon(String name, int id, int hp, ArrayList<Attack> attackList) {
         super(name, id, hp, attackList);
@@ -34,4 +35,7 @@ public class AbstractGrassPokemon extends AbstractPokemon {
     public void receiveFireAttack(AbstractFirePokemon attack) {
         this.receiveWeaknessAttack(attack);
     }
+
+    @Override
+    public abstract void accept(Visitor v);
 }

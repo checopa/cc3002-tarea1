@@ -1,16 +1,15 @@
-package cc3002.tarea1.cards.pokemon.grass;
+package cc3002.tarea1.cards.pokemon.water;
 
 import cc3002.tarea1.cards.pokemon.IPhaseOnePokemon;
 import cc3002.tarea1.habilities.Attack;
 import cc3002.tarea1.visitor.Visitor;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
-public class PhaseOneGrassPokemon extends AbstractGrassPokemon implements IPhaseOnePokemon {
+public class PhaseOneWaterPokemon extends AbstractWaterPokemon implements IPhaseOnePokemon {
     private int preEvolutionId;
 
-    public PhaseOneGrassPokemon(String name, int id, int hp, ArrayList<Attack> attackList,int preEvolutionId) {
+    public PhaseOneWaterPokemon(String name, int id, int hp, ArrayList<Attack> attackList, int preEvolutionId) {
         super(name, id, hp, attackList);
         this.preEvolutionId=preEvolutionId;
     }
@@ -28,9 +27,9 @@ public class PhaseOneGrassPokemon extends AbstractGrassPokemon implements IPhase
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof PhaseOneGrassPokemon)) return false;
+        if (!(o instanceof PhaseOneWaterPokemon)) return false;
         if (!super.equals(o)) return false;
-        PhaseOneGrassPokemon that = (PhaseOneGrassPokemon) o;
+        PhaseOneWaterPokemon that = (PhaseOneWaterPokemon) o;
         return preEvolutionId == that.preEvolutionId;
     }
 

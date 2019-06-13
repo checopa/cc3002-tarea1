@@ -10,11 +10,6 @@ public interface ICard {
      */
     String getName();
 
-    /**
-     * Trainer play a card
-     * @param trainer Trainer that play a card
-     */
-    void playACard(Trainer trainer);
 
     /**
      * Set a card's trainer
@@ -27,5 +22,5 @@ public interface ICard {
      */
     Trainer getTrainer();
 
-
+    void accept(Visitor v);
 }

@@ -9,8 +9,6 @@ import cc3002.tarea1.cards.pokemon.lighting.AbstractLightingPokemon;
 import cc3002.tarea1.cards.pokemon.psychic.AbstractPsychicPokemon;
 import cc3002.tarea1.cards.pokemon.water.AbstractWaterPokemon;
 import cc3002.tarea1.habilities.Attack;
-import cc3002.tarea1.trainer.Trainer;
-import cc3002.tarea1.visitor.Visitor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -64,9 +62,6 @@ public abstract class AbstractPokemon extends AbstractCard implements IPokemon{
         return this.hp;
     }
 
-    public void playACard(Trainer trainer){
-        trainer.playPokemon(this);
-    }
 
     @Override
     public boolean isAlive() {
@@ -76,17 +71,17 @@ public abstract class AbstractPokemon extends AbstractCard implements IPokemon{
 
     //region Attacks
     @Override
-    public List<Attack> getAttacks() {
+    public List<Attack> getAbilities() {
         return this.attackList;
     }
 
     @Override
-    public Attack getSelectedAttack() {
+    public Attack getSelectedAbility() {
         return this.selectedAttack;
     }
 
     @Override
-    public void selectAttack(int index) {
+    public void selectAbility(int index) {
         selectedAttack = attackList.get(index);
 
     }
@@ -131,7 +126,7 @@ public abstract class AbstractPokemon extends AbstractCard implements IPokemon{
      * @param attack Received attack
      */
     protected void receiveAttack(IPokemon attack) {
-        this.hp -= attack.getSelectedAttack().getBaseDamage();
+        this.hp -= attack.getSelectedAbility().getBaseDamage();
         if(!isAlive()){
             this.hp=0;
         }
@@ -143,7 +138,7 @@ public abstract class AbstractPokemon extends AbstractCard implements IPokemon{
      * @param attack Received attack.
      */
     protected void receiveWeaknessAttack(IPokemon attack) {
-        this.hp -= attack.getSelectedAttack().getBaseDamage() * 2;
+        this.hp -= attack.getSelectedAbility().getBaseDamage() * 2;
         if(!isAlive()){
             this.hp=0;
         }
@@ -155,7 +150,7 @@ public abstract class AbstractPokemon extends AbstractCard implements IPokemon{
      * @param attack Received attack
      */
     public void receiveResistantAttack(IPokemon attack) {
-        int hit=attack.getSelectedAttack().getBaseDamage()-30;
+        int hit=attack.getSelectedAbility().getBaseDamage()-30;
         if(hit>0){
             this.hp-=hit;
         }
@@ -166,9 +161,9 @@ public abstract class AbstractPokemon extends AbstractCard implements IPokemon{
 
     @Override
     public boolean cantAttack() {
-        return getSelectedAttack().getFightingCost() <= getFightingEnergy() && getSelectedAttack().getFireCost() <= getFireEnergy()
-                && getSelectedAttack().getGrassCost() <= getGrassEnergy() && getSelectedAttack().getPsychicCost() <= getPsychicEnergy()
-                && getSelectedAttack().getLightingCost() <= getLightingEnergy() && getSelectedAttack().getWaterCost() <= getWaterEnergy();
+        return getSelectedAbility().getFightingCost() <= getFightingEnergy() && getSelectedAbility().getFireCost() <= getFireEnergy()
+                && getSelectedAbility().getGrassCost() <= getGrassEnergy() && getSelectedAbility().getPsychicCost() <= getPsychicEnergy()
+                && getSelectedAbility().getLightingCost() <= getLightingEnergy() && getSelectedAbility().getWaterCost() <= getWaterEnergy();
     }
 //endregion
 
@@ -248,6 +243,6 @@ public abstract class AbstractPokemon extends AbstractCard implements IPokemon{
     @Override
     public boolean equals(Object obj) {
         return obj instanceof IPokemon && ((IPokemon) obj).getId() == this.id
-                && ((IPokemon) obj).getName().equals(name) && ((IPokemon) obj).getHP()==this.hp && ((IPokemon) obj).getAttacks().equals(this.attackList);
+                && ((IPokemon) obj).getName().equals(name) && ((IPokemon) obj).getHP()==this.hp && ((IPokemon) obj).getAbilities().equals(this.attackList);
     }
 }

@@ -5,6 +5,7 @@ import cc3002.tarea1.habilities.Attack;
 import cc3002.tarea1.visitor.Visitor;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class PhaseOneFightingPokemon extends AbstractFightingPokemon implements IPhaseOnePokemon {
     private int preEvolutionId;
@@ -22,6 +23,15 @@ public class PhaseOneFightingPokemon extends AbstractFightingPokemon implements 
     @Override
     public void accept(Visitor v) {
         v.visitPhaseOnePokemon(this);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PhaseOneFightingPokemon)) return false;
+        if (!super.equals(o)) return false;
+        PhaseOneFightingPokemon that = (PhaseOneFightingPokemon) o;
+        return preEvolutionId == that.preEvolutionId;
     }
 
 }

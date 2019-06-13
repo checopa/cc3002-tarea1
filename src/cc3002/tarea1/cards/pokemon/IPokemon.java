@@ -32,16 +32,16 @@ public interface IPokemon extends ICard {
     int getHP();
 
     /**
-     * Getter for the pokemon's attacks
-     * @return Attacks of the pokemon
+     * Getter for the pokemon's abilities
+     * @return Abilities of the pokemon
      */
-    List<Attack> getAttacks();
+    List<Attack> getAbilities();
 
     /**
-     * Getter for the attack selected
-     * @return Attack selected
+     * Getter for the ability selected
+     * @return Ability selected
      */
-    Attack getSelectedAttack();
+    Attack getSelectedAbility();
 
     /**
      * Attack another pokemon
@@ -50,10 +50,10 @@ public interface IPokemon extends ICard {
     void attack(IPokemon pokemon);
 
     /**
-     * Selects an attack
-     * @param index Index of the attack to be selected
+     * Selects an ability
+     * @param index Index of the ability to be selected
      */
-    void selectAttack(int index);
+    void selectAbility(int index);
 
     /**
      * Receives damage from a water attack.

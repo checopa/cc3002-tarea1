@@ -1,10 +1,10 @@
 package cc3002.tarea1.trainer;
 
 import cc3002.tarea1.cards.ICard;
-import cc3002.tarea1.cards.energy.IEnergy;
-import cc3002.tarea1.cards.pokemon.AbstractPokemon;
 import cc3002.tarea1.cards.pokemon.IPokemon;
 import cc3002.tarea1.habilities.Attack;
+import cc3002.tarea1.visitor.PlayCardVisitor;
+import cc3002.tarea1.visitor.Visitor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +23,7 @@ public class Trainer {
     private List<ICard> prizecard;
     private IPokemon activePokemon;
     private List<IPokemon> bench=new ArrayList<>();
+    private Visitor visitplaycard;
 
     /**
      * Create a new trainer
@@ -32,6 +33,7 @@ public class Trainer {
     public Trainer(String name, ArrayList<ICard> deck) {
         this.name=name;
         this.deck=deck;
+        visitplaycard=new PlayCardVisitor();
     }
 
     /**
@@ -125,16 +127,6 @@ public class Trainer {
         this.selectedCard=null;
     }
 
-    /**
-     * Play a card
-     * @param card Card that is played
-     */
-    public void play(ICard card){
-        if(this.hand!=null) {
-            hand.remove(card);
-            card.playACard(this);
-        }
-    }
 
     /**
      * Add card to the hand.
@@ -143,12 +135,16 @@ public class Trainer {
         this.hand.add(draw());
     }
 
+    public void playCard(){
+        this.selectedCard.accept(this.visitplaycard);
+    }
+
     /**
      * Getter for the active pokemon's attacks
      * @return active pokemon's attacks
      */
     public List<Attack> getAttacksPokemon(){
-        return this.activePokemon.getAttacks();
+        return this.activePokemon.getAbilities();
     }
 
     /**
@@ -156,7 +152,7 @@ public class Trainer {
      * @param index attack's index
      */
     public void selectAttackPokemon(int index){
-        this.activePokemon.selectAttack((index));
+        this.activePokemon.selectAbility((index));
     }
 
     /**
@@ -164,7 +160,7 @@ public class Trainer {
      * @return Attack selected
      */
     public Attack getSelectedAttackPokemon(){
-        return this.activePokemon.getSelectedAttack();
+        return this.activePokemon.getSelectedAbility();
     }
 
     /**
@@ -213,12 +209,4 @@ public class Trainer {
         bench.remove(0);
     }
 
-    public void playPokemon(IPokemon pokemon) {
-        if(this.getActivePokemon()==null){
-            activePokemon=pokemon;
-        }
-        else if(bench.size()<5){
-            bench.add(pokemon);
-        }
-    }
 }

@@ -22,11 +22,6 @@ public abstract class AbstractEnergy extends AbstractCard implements IEnergy {
 
     }
 
-    public void playACard(Trainer trainer){
-        if(trainer.getSelectedPokemon()!=null){
-            this.useEnergyCard(trainer.getSelectedPokemon());
-        }
-    }
 
     @Override
     public abstract void useEnergyCard(IPokemon pokemon);

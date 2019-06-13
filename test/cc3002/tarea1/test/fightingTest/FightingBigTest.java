@@ -76,7 +76,7 @@ public class FightingBigTest {
         assertEquals(true,firstTrainer.getActivePokemon().isAlive());
         firstTrainer.selectAttackPokemon(0);
         secondTrainer.selectAttackPokemon(0);
-        assertEquals("Fourth Attack",firstTrainer.getActivePokemon().getSelectedAttack().getDescription());
+        assertEquals("Fourth Attack",firstTrainer.getActivePokemon().getSelectedAbility().getDescription());
         assertEquals(fourthAttack,firstTrainer.getSelectedAttackPokemon());
         assertNotEquals(firstAttack,secondTrainer.getSelectedAttackPokemon());
         assertNotEquals(false,secondTrainer.getActivePokemon().cantAttack());
