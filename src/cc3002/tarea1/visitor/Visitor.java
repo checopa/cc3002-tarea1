@@ -9,6 +9,8 @@ import cc3002.tarea1.cards.pokemon.IPokemon;
 import cc3002.tarea1.cards.trainercard.ObjectTrainer;
 import cc3002.tarea1.cards.trainercard.StadiumTrainer;
 import cc3002.tarea1.cards.trainercard.SupportTrainer;
+import cc3002.tarea1.habilities.Ability;
+import cc3002.tarea1.habilities.Attack;
 
 public class Visitor {
 
@@ -26,5 +28,9 @@ public class Visitor {
     public void visitStadiumCard(StadiumTrainer stadiumtrainer){}
 
     public void visitSupportTrainer(SupportTrainer supporttrainer){}
+
+    public void visitAttack(Attack attack){}
+
+    public void visitAbility(Ability ability){}
 
 }

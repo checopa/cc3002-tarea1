@@ -6,6 +6,7 @@ public abstract class AbstractAbility implements IAbility{
     private String name;
     private String description;
     private HashMap<String,Integer> cost;
+    private int baseDamage;
 
     /**
      * Create a new ability.
@@ -62,6 +63,10 @@ public abstract class AbstractAbility implements IAbility{
 
     public int getPsychicCost(){
         return cost.get("Psychic");
+    }
+
+    public int getBaseDamage(){
+        return this.baseDamage;
     }
 
 }

@@ -3,6 +3,7 @@ package cc3002.tarea1.cards.pokemon.lighting;
 
 import cc3002.tarea1.cards.pokemon.IPhaseOnePokemon;
 import cc3002.tarea1.habilities.Attack;
+import cc3002.tarea1.habilities.IAbility;
 import cc3002.tarea1.visitor.Visitor;
 
 import java.util.ArrayList;
@@ -11,8 +12,8 @@ import java.util.Objects;
 public class PhaseOneLightingPokemon extends AbstractLightingPokemon implements IPhaseOnePokemon {
     private int preEvolutionId;
 
-    public PhaseOneLightingPokemon(String name, int id, int hp, ArrayList<Attack> attackList,int preEvolutionId) {
-        super(name, id, hp, attackList);
+    public PhaseOneLightingPokemon(String name, int id, int hp, ArrayList<IAbility> abilitiesList, int preEvolutionId) {
+        super(name, id, hp, abilitiesList);
         this.preEvolutionId=preEvolutionId;
     }
 

@@ -9,21 +9,19 @@ import cc3002.tarea1.cards.pokemon.lighting.AbstractLightingPokemon;
 import cc3002.tarea1.cards.pokemon.psychic.AbstractPsychicPokemon;
 import cc3002.tarea1.cards.pokemon.water.AbstractWaterPokemon;
 import cc3002.tarea1.habilities.Attack;
+import cc3002.tarea1.habilities.IAbility;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author José Pacheco
  */
-public abstract class AbstractPokemon extends AbstractCard implements IPokemon{
+public abstract class AbstractPokemon extends AbstractCard implements IPokemon,IBasicPokemon{
     private String name;
     private int id;
     private int hp;
-    private List<Attack> attackList;
-    private Attack selectedAttack;
+    private ArrayList<IAbility> abilityList;
+    private IAbility selectedAbility;
     private Map<String, Integer> countEnergies = new HashMap<>();
 
 
@@ -31,16 +29,16 @@ public abstract class AbstractPokemon extends AbstractCard implements IPokemon{
      * Abstract class that represents a generic pokemon.
      * @param id pokemon's id
      * @param hp pokemon's hp
-     * @param attackList pokemon's attack
+     * @param abilityList pokemon's ability
      */
-    protected AbstractPokemon(String name, int id, int hp, ArrayList<Attack> attackList) {
+    protected AbstractPokemon(String name, int id, int hp, ArrayList<IAbility> abilityList) {
         super(name);
         this.id = id;
         this.hp = hp;
-        this.attackList=attackList;
-        if (4<this.attackList.size()){
-            for (int i=0;i<this.attackList.size()-4;i++){
-                this.attackList.remove(4);
+        this.abilityList=abilityList;
+        if (4<this.abilityList.size()){
+            for (int i=0;i<this.abilityList.size()-4;i++){
+                this.abilityList.remove(4);
             }
         }
         countEnergies.put("Water", 0);
@@ -71,18 +69,18 @@ public abstract class AbstractPokemon extends AbstractCard implements IPokemon{
 
     //region Attacks
     @Override
-    public List<Attack> getAbilities() {
-        return this.attackList;
+    public ArrayList<IAbility> getAbilities() {
+        return this.abilityList;
     }
 
     @Override
-    public Attack getSelectedAbility() {
-        return this.selectedAttack;
+    public IAbility getSelectedAbility() {
+        return this.selectedAbility;
     }
 
     @Override
     public void selectAbility(int index) {
-        selectedAttack = attackList.get(index);
+        selectedAbility = abilityList.get(index);
 
     }
 
@@ -240,9 +238,23 @@ public abstract class AbstractPokemon extends AbstractCard implements IPokemon{
 
     //endregion
 
-    @Override
+    /*@Override
     public boolean equals(Object obj) {
         return obj instanceof IPokemon && ((IPokemon) obj).getId() == this.id
-                && ((IPokemon) obj).getName().equals(name) && ((IPokemon) obj).getHP()==this.hp && ((IPokemon) obj).getAbilities().equals(this.attackList);
+                && ((IPokemon) obj).getName().equals(name) && ((IPokemon) obj).getHP()==this.hp && ((IPokemon) obj).getAbilities().equals(this.abilityList);
+    }*/
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof AbstractPokemon)) return false;
+        AbstractPokemon that = (AbstractPokemon) o;
+        return getId() == that.getId() &&
+                hp == that.hp &&
+                Objects.equals(getName(), that.getName()) &&
+                Objects.equals(abilityList, that.abilityList) &&
+                Objects.equals(getSelectedAbility(), that.getSelectedAbility()) &&
+                Objects.equals(countEnergies, that.countEnergies);
     }
+
 }

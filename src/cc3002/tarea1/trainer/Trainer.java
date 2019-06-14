@@ -2,7 +2,7 @@ package cc3002.tarea1.trainer;
 
 import cc3002.tarea1.cards.ICard;
 import cc3002.tarea1.cards.pokemon.IPokemon;
-import cc3002.tarea1.habilities.Attack;
+import cc3002.tarea1.habilities.IAbility;
 import cc3002.tarea1.visitor.PlayCardVisitor;
 import cc3002.tarea1.visitor.Visitor;
 
@@ -17,12 +17,12 @@ public class Trainer {
     private String name;
     private IPokemon selectedPokemon;
     private ICard selectedCard;
-    private List<ICard> deck;
-    private List<ICard> hand;
-    private List<ICard> discard;
-    private List<ICard> prizecard;
+    private ArrayList<ICard> deck;
+    private ArrayList<ICard> hand=new ArrayList<>();
+    private ArrayList<ICard> discard=new ArrayList<>();
+    private ArrayList<ICard> prizecard;
     private IPokemon activePokemon;
-    private List<IPokemon> bench=new ArrayList<>();
+    private ArrayList<IPokemon> bench=new ArrayList<>();
     private Visitor visitplaycard;
 
     /**
@@ -34,6 +34,12 @@ public class Trainer {
         this.name=name;
         this.deck=deck;
         visitplaycard=new PlayCardVisitor();
+        if(60<this.deck.size()){
+            for(int i=0;i<(this.deck.size()-4);i++){
+                this.deck.remove(60);
+            }
+
+        }
     }
 
     /**
@@ -139,11 +145,17 @@ public class Trainer {
         this.selectedCard.accept(this.visitplaycard);
     }
 
+
+    public void useAbility(){
+        this.getSelectedAbilityPokemon().accept(this.visitplaycard);
+    }
+
+
     /**
      * Getter for the active pokemon's attacks
      * @return active pokemon's attacks
      */
-    public List<Attack> getAttacksPokemon(){
+    public List<IAbility> getAbilitiesPokemon(){
         return this.activePokemon.getAbilities();
     }
 
@@ -151,7 +163,7 @@ public class Trainer {
      * Select attack for the pokemon
      * @param index attack's index
      */
-    public void selectAttackPokemon(int index){
+    public void selectAbilityPokemon(int index){
         this.activePokemon.selectAbility((index));
     }
 
@@ -159,7 +171,7 @@ public class Trainer {
      *Getter for the attack selected
      * @return Attack selected
      */
-    public Attack getSelectedAttackPokemon(){
+    public IAbility getSelectedAbilityPokemon(){
         return this.activePokemon.getSelectedAbility();
     }
 
@@ -200,6 +212,15 @@ public class Trainer {
         return this.bench;
     }
 
+
+    public ArrayList<ICard> getDiscardCards(){
+        return this.discard;
+    }
+
+    public void addToBench(IPokemon pokemon){
+        this.bench.add(pokemon);
+    }
+
     /**
      * Change active pokemon when the active pokemon die
      */
@@ -208,5 +229,7 @@ public class Trainer {
         activePokemon=bench.get(0);
         bench.remove(0);
     }
+
+
 
 }

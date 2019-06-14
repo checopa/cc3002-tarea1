@@ -1,5 +1,7 @@
 package cc3002.tarea1.habilities;
 
+import cc3002.tarea1.visitor.Visitor;
+
 import java.util.HashMap;
 
 public interface IAbility {
@@ -56,5 +58,14 @@ public interface IAbility {
      * @return psychic's energy's cost
      */
     int getPsychicCost();
+
+    void accept(Visitor v);
+
+
+    /**
+     * Getter for the base damage of the attack
+     * @return base damage
+     */
+    int getBaseDamage();
 
 }

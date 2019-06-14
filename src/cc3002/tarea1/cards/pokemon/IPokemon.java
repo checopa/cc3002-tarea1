@@ -10,6 +10,7 @@ import cc3002.tarea1.cards.pokemon.grass.AbstractGrassPokemon;
 import cc3002.tarea1.cards.pokemon.psychic.AbstractPsychicPokemon;
 import cc3002.tarea1.cards.pokemon.water.AbstractWaterPokemon;
 import cc3002.tarea1.habilities.Attack;
+import cc3002.tarea1.habilities.IAbility;
 import cc3002.tarea1.visitor.Visitor;
 
 import java.util.List;
@@ -35,13 +36,13 @@ public interface IPokemon extends ICard {
      * Getter for the pokemon's abilities
      * @return Abilities of the pokemon
      */
-    List<Attack> getAbilities();
+    List<IAbility> getAbilities();
 
     /**
      * Getter for the ability selected
      * @return Ability selected
      */
-    Attack getSelectedAbility();
+    IAbility getSelectedAbility();
 
     /**
      * Attack another pokemon

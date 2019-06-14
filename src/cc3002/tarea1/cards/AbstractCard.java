@@ -3,6 +3,8 @@ package cc3002.tarea1.cards;
 import cc3002.tarea1.trainer.Trainer;
 import cc3002.tarea1.visitor.Visitor;
 
+import java.util.Objects;
+
 public abstract class AbstractCard  implements ICard{
     private String name;
     private Trainer trainer;

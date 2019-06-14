@@ -1,5 +1,7 @@
 package cc3002.tarea1.habilities;
 
+import cc3002.tarea1.visitor.Visitor;
+
 import java.util.HashMap;
 
 /**
@@ -24,15 +26,13 @@ public class Attack extends AbstractAbility{
         this.baseDamage = baseDamage;
     }
 
-    /**
-     * Getter for the base damage of the attack
-     * @return base damage
-     */
     public int getBaseDamage() {
         return this.baseDamage;
     }
 
-
+    public void accept(Visitor v){
+        v.visitAttack(this);
+    }
     /**
      * Checks if this attack is equal to another.
      *

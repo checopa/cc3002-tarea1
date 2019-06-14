@@ -2,6 +2,7 @@ package cc3002.tarea1.cards.pokemon.water;
 
 import cc3002.tarea1.cards.pokemon.IPhaseOnePokemon;
 import cc3002.tarea1.habilities.Attack;
+import cc3002.tarea1.habilities.IAbility;
 import cc3002.tarea1.visitor.Visitor;
 
 import java.util.ArrayList;
@@ -9,8 +10,8 @@ import java.util.ArrayList;
 public class PhaseOneWaterPokemon extends AbstractWaterPokemon implements IPhaseOnePokemon {
     private int preEvolutionId;
 
-    public PhaseOneWaterPokemon(String name, int id, int hp, ArrayList<Attack> attackList, int preEvolutionId) {
-        super(name, id, hp, attackList);
+    public PhaseOneWaterPokemon(String name, int id, int hp, ArrayList<IAbility> abilitiesList, int preEvolutionId) {
+        super(name, id, hp, abilitiesList);
         this.preEvolutionId=preEvolutionId;
     }
 

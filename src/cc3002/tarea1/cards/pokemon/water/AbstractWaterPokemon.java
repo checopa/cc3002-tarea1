@@ -6,6 +6,7 @@ import cc3002.tarea1.cards.pokemon.fighting.AbstractFightingPokemon;
 import cc3002.tarea1.cards.pokemon.grass.AbstractGrassPokemon;
 import cc3002.tarea1.cards.pokemon.lighting.AbstractLightingPokemon;
 import cc3002.tarea1.habilities.Attack;
+import cc3002.tarea1.habilities.IAbility;
 import cc3002.tarea1.visitor.Visitor;
 
 import java.util.ArrayList;
@@ -16,8 +17,8 @@ import java.util.ArrayList;
 
 public abstract class AbstractWaterPokemon extends AbstractPokemon {
 
-    public AbstractWaterPokemon(String name, int id, int hp, ArrayList<Attack> attackList) {
-        super(name, id, hp, attackList);
+    public AbstractWaterPokemon(String name, int id, int hp, ArrayList<IAbility> abilitiesList) {
+        super(name, id, hp, abilitiesList);
     }
 
     @Override

@@ -2,6 +2,7 @@ package cc3002.tarea1.cards.pokemon.psychic;
 
 import cc3002.tarea1.cards.pokemon.IPhaseTwoPokemon;
 import cc3002.tarea1.habilities.Attack;
+import cc3002.tarea1.habilities.IAbility;
 import cc3002.tarea1.visitor.Visitor;
 
 import java.util.ArrayList;
@@ -9,8 +10,8 @@ import java.util.ArrayList;
 public class PhaseTwoPsychicPokemon extends AbstractPsychicPokemon implements IPhaseTwoPokemon {
     private int preEvolutionId;
 
-    public PhaseTwoPsychicPokemon(String name, int id, int hp, ArrayList<Attack> attackList,int preEvolutionId) {
-        super(name, id, hp, attackList);
+    public PhaseTwoPsychicPokemon(String name, int id, int hp, ArrayList<IAbility> abilitiesList, int preEvolutionId) {
+        super(name, id, hp, abilitiesList);
         this.preEvolutionId=preEvolutionId;
     }
 
