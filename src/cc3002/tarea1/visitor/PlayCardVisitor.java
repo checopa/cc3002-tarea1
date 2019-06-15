@@ -71,7 +71,7 @@ public class PlayCardVisitor extends Visitor {
     public void addEnergies(IPokemon pokemon){
         Trainer trainer=pokemon.getTrainer();
         Map<String, Integer> energies;
-        energies=trainer.getActivePokemon().getEnergies();
+        energies=trainer.getSelectedPokemon().getEnergies();
         pokemon.setEnergies(energies);
     }
 

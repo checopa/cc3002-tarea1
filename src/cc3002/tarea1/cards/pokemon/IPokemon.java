@@ -9,6 +9,7 @@ import cc3002.tarea1.cards.pokemon.lighting.AbstractLightingPokemon;
 import cc3002.tarea1.cards.pokemon.grass.AbstractGrassPokemon;
 import cc3002.tarea1.cards.pokemon.psychic.AbstractPsychicPokemon;
 import cc3002.tarea1.cards.pokemon.water.AbstractWaterPokemon;
+import cc3002.tarea1.cards.trainercard.ObjectTrainer;
 import cc3002.tarea1.habilities.Attack;
 import cc3002.tarea1.habilities.IAbility;
 import cc3002.tarea1.visitor.Visitor;
@@ -43,6 +44,18 @@ public interface IPokemon extends ICard {
      * @return Ability selected
      */
     IAbility getSelectedAbility();
+
+    /**
+     * setter for the pokemon's object trainer card
+     * @param objectCardTrainer pokemon's object trainer card
+     */
+    void setObjectTrainerCard(ObjectTrainer objectCardTrainer);
+
+    /**
+     * getter for the pokemon's object trainer card
+     * @return pokemon's object trainer card
+     */
+    ObjectTrainer getObjectTrainerCard();
 
     /**
      * Attack another pokemon

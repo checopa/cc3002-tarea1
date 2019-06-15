@@ -1,5 +1,6 @@
 package cc3002.tarea1.habilities;
 
+import cc3002.tarea1.trainer.Trainer;
 import cc3002.tarea1.visitor.Visitor;
 
 import java.util.HashMap;
@@ -22,6 +23,18 @@ public interface IAbility {
      * @return ability's cost
      */
     HashMap<String,Integer> getCost();
+
+    /**
+     * getter for the trainer that use the ability
+     * @return trainer that use the ability
+     */
+    Trainer getTrainer();
+
+    /**
+     * setter for the trainer that use the ability
+     * @param trainer trainer that use the ability
+     */
+    void setTrainer(Trainer trainer);
 
     /**
      * Getter for the water's energy's cost

@@ -8,6 +8,7 @@ import cc3002.tarea1.cards.pokemon.grass.AbstractGrassPokemon;
 import cc3002.tarea1.cards.pokemon.lighting.AbstractLightingPokemon;
 import cc3002.tarea1.cards.pokemon.psychic.AbstractPsychicPokemon;
 import cc3002.tarea1.cards.pokemon.water.AbstractWaterPokemon;
+import cc3002.tarea1.cards.trainercard.ObjectTrainer;
 import cc3002.tarea1.habilities.Attack;
 import cc3002.tarea1.habilities.IAbility;
 
@@ -23,6 +24,7 @@ public abstract class AbstractPokemon extends AbstractCard implements IPokemon,I
     private ArrayList<IAbility> abilityList;
     private IAbility selectedAbility;
     private Map<String, Integer> countEnergies = new HashMap<>();
+    private ObjectTrainer objectTrainerCard;
 
 
     /**
@@ -65,6 +67,17 @@ public abstract class AbstractPokemon extends AbstractCard implements IPokemon,I
     public boolean isAlive() {
         return this.hp>0;
     }
+
+    public void setObjectTrainerCard(ObjectTrainer objectTrainerCard){
+        if(this.objectTrainerCard!=null) {
+            this.objectTrainerCard = objectTrainerCard;
+        }
+    }
+
+    public ObjectTrainer getObjectTrainerCard(){
+        return this.objectTrainerCard;
+    }
+
     //endregion
 
     //region Attacks

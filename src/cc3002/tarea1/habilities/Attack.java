@@ -1,8 +1,10 @@
 package cc3002.tarea1.habilities;
 
+import cc3002.tarea1.effects.IEffect;
 import cc3002.tarea1.visitor.Visitor;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 /**
  * @author José Pacheco
@@ -10,9 +12,6 @@ import java.util.HashMap;
 
 public class Attack extends AbstractAbility{
     private int baseDamage;
-    private String name;
-    private String description;
-    private HashMap<String,Integer> cost;
 
     /**
      * Create a new Attack.
@@ -21,8 +20,8 @@ public class Attack extends AbstractAbility{
      * @param description description of the attack
      * @param cost cost in energy of the attack
      */
-    public Attack(String name, int baseDamage, String description, HashMap<String,Integer> cost) {
-        super(name,description,cost);
+    public Attack(String name, int baseDamage, String description, HashMap<String,Integer> cost, IEffect effect) {
+        super(name,description,cost,effect);
         this.baseDamage = baseDamage;
     }
 
@@ -33,15 +32,14 @@ public class Attack extends AbstractAbility{
     public void accept(Visitor v){
         v.visitAttack(this);
     }
-    /**
-     * Checks if this attack is equal to another.
-     *
-     * @param obj Object to compare this attack.
-     * @return <code>true</code> if the objects are equal, <code>false</code> otherwise.
-     */
+
+
     @Override
-    public boolean equals(Object obj) {
-        return obj instanceof Attack && ((Attack) obj).getBaseDamage() == baseDamage
-                && ((Attack) obj).getName().equals(name) && ((Attack) obj).getDescription().equals(description) && ((Attack) obj).getCost().equals(cost);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Attack)) return false;
+        Attack attack = (Attack) o;
+        return getBaseDamage() == attack.getBaseDamage();
     }
+
 }

@@ -63,12 +63,7 @@ public class Test1 {
     @Test
     public void BigTest() {
         //Se añaden las tras cartas del mazo a la mano del primer entrenador
-        firstTrainer.addToHand();
-        firstTrainer.addToHand();
-        firstTrainer.addToHand();
-        firstTrainer.addToHand();
-        firstTrainer.addToHand();
-        firstTrainer.addToHand();
+        firstTrainer.addToHand(6);
         //Se selecciona la carta de la mano que sera jugada
         firstTrainer.setSelectedCard(firstTrainer.getHand().get(0));
         firstTrainer.playCard();
@@ -98,10 +93,7 @@ public class Test1 {
         assertEquals(1,firstTrainer.getActivePokemon().getWaterEnergy());
         assertEquals(1,firstTrainer.getActivePokemon().getGrassEnergy());
         assertEquals(1,firstTrainer.getActivePokemon().getFireEnergy());
-        
-        secondTrainer.addToHand();
-        secondTrainer.addToHand();
-        secondTrainer.addToHand();
+        secondTrainer.addToHand(3);
         secondTrainer.setSelectedCard(secondTrainer.getHand().get(0));
         secondTrainer.playCard();
         secondTrainer.setSelectedCard(secondTrainer.getHand().get(0));
@@ -111,8 +103,11 @@ public class Test1 {
         firstTrainer.selectAbilityPokemon(1);
         firstTrainer.attackTrainer(secondTrainer);
         assertEquals(50,secondTrainer.getActivePokemon().getHP());
-        
-        
+        firstTrainer.attackTrainer(secondTrainer);
+        assertEquals(1,secondTrainer.getDiscardCards().size());
+        assertEquals(1,secondTrainer.getBench().size());
+
+
         
     }
 }

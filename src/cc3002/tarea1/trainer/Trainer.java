@@ -24,6 +24,7 @@ public class Trainer {
     private IPokemon activePokemon;
     private ArrayList<IPokemon> bench=new ArrayList<>();
     private Visitor visitplaycard;
+    private Trainer opponent;
 
     /**
      * Create a new trainer
@@ -87,6 +88,14 @@ public class Trainer {
         }
     }
 
+    public void setOpponent(Trainer trainer){
+        this.opponent=trainer;
+    }
+
+    public Trainer getOpponent(){
+        return this.opponent;
+    }
+
     /**
      * Select pokemon that receive energies, a evolution or a object
      * @param pokemon pokemon that receive energy, a evolution or a object
@@ -135,10 +144,13 @@ public class Trainer {
 
 
     /**
-     * Add card to the hand.
+     * Add n cards to the hand.
      */
-    public void addToHand(){
-        this.hand.add(draw());
+    public void addToHand(int n){
+        while(n>0) {
+            this.hand.add(draw());
+            n--;
+        }
     }
 
     public void playCard(){
@@ -164,7 +176,9 @@ public class Trainer {
      * @param index attack's index
      */
     public void selectAbilityPokemon(int index){
+
         this.activePokemon.selectAbility((index));
+        this.activePokemon.getSelectedAbility().setTrainer(this);
     }
 
     /**
@@ -211,6 +225,7 @@ public class Trainer {
     public List<IPokemon> getBench(){
         return this.bench;
     }
+
 
 
     public ArrayList<ICard> getDiscardCards(){
