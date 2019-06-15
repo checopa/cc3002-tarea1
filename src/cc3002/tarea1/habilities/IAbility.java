@@ -1,5 +1,6 @@
 package cc3002.tarea1.habilities;
 
+import cc3002.tarea1.effects.IEffect;
 import cc3002.tarea1.trainer.Trainer;
 import cc3002.tarea1.visitor.Visitor;
 
@@ -35,6 +36,12 @@ public interface IAbility {
      * @param trainer trainer that use the ability
      */
     void setTrainer(Trainer trainer);
+
+    /**
+     * Getter for the ability's effect
+     * @return
+     */
+    IEffect getEffect();
 
     /**
      * Getter for the water's energy's cost

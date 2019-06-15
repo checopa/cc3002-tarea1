@@ -51,6 +51,10 @@ public abstract class AbstractAbility implements IAbility{
         return this.trainer;
     }
 
+    public IEffect getEffect(){
+        return this.effect;
+    }
+
     public int getWaterCost(){
         return cost.get("Water");
     }

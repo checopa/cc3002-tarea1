@@ -55,14 +55,14 @@ public class PlayCardVisitor extends Visitor {
 
     public void visitStadiumCard(StadiumTrainer stadiumTrainer){
         Trainer trainer=stadiumTrainer.getTrainer();
-        //codigo
+        trainer.setStadiumCard(stadiumTrainer);
         trainer.getHand().remove(stadiumTrainer);
 
     }
 
     public void visitSupportTrainer(SupportTrainer supportTrainer){
         Trainer trainer=supportTrainer.getTrainer();
-        //codigo
+        supportTrainer.getEffect().doEffect(trainer);
         trainer.getHand().remove(supportTrainer);
     }
 

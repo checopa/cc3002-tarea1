@@ -21,6 +21,11 @@ public abstract class AbstractTrainerCard extends AbstractCard implements ITrain
         return this.description;
     }
 
+    @Override
+    public IEffect getEffect(){
+        return this.effect;
+    }
+
 
 
 }

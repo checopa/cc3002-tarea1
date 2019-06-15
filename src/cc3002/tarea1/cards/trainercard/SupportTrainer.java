@@ -5,7 +5,7 @@ import cc3002.tarea1.visitor.Visitor;
 
 public class SupportTrainer extends AbstractTrainerCard {
 
-    protected SupportTrainer(String name, String description, IEffect effect) {
+    public SupportTrainer(String name, String description, IEffect effect) {
         super(name, description, effect);
     }
 

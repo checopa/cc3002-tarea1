@@ -6,7 +6,7 @@ import cc3002.tarea1.visitor.Visitor;
 public class ObjectTrainer extends AbstractTrainerCard {
 
 
-    protected ObjectTrainer(String name, String description, IEffect effect) {
+    public ObjectTrainer(String name, String description, IEffect effect) {
         super(name, description, effect);
     }
 

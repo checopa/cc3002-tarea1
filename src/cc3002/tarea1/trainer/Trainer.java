@@ -2,7 +2,10 @@ package cc3002.tarea1.trainer;
 
 import cc3002.tarea1.cards.ICard;
 import cc3002.tarea1.cards.pokemon.IPokemon;
+import cc3002.tarea1.cards.trainercard.AbstractTrainerCard;
+import cc3002.tarea1.cards.trainercard.StadiumTrainer;
 import cc3002.tarea1.habilities.IAbility;
+import cc3002.tarea1.visitor.PlayAbilityVisitor;
 import cc3002.tarea1.visitor.PlayCardVisitor;
 import cc3002.tarea1.visitor.Visitor;
 
@@ -24,6 +27,8 @@ public class Trainer {
     private IPokemon activePokemon;
     private ArrayList<IPokemon> bench=new ArrayList<>();
     private Visitor visitplaycard;
+    private Visitor visitAbility;
+    private AbstractTrainerCard stadiumTrainer;
     private Trainer opponent;
 
     /**
@@ -35,6 +40,7 @@ public class Trainer {
         this.name=name;
         this.deck=deck;
         visitplaycard=new PlayCardVisitor();
+        visitAbility=new PlayAbilityVisitor();
         if(60<this.deck.size()){
             for(int i=0;i<(this.deck.size()-4);i++){
                 this.deck.remove(60);
@@ -159,7 +165,15 @@ public class Trainer {
 
 
     public void useAbility(){
-        this.getSelectedAbilityPokemon().accept(this.visitplaycard);
+        this.getSelectedAbilityPokemon().accept(this.visitAbility);
+    }
+
+    public void setStadiumCard(StadiumTrainer stadiumTrainer){
+        this.stadiumTrainer=stadiumTrainer;
+    }
+
+    public void doStadiumEffect(){
+        stadiumTrainer.getEffect().doEffect(this);
     }
 
 
@@ -226,7 +240,10 @@ public class Trainer {
         return this.bench;
     }
 
-
+    /**
+     * Getter for the trainer's discard cards
+     * @return trainer's discard cards
+     */
 
     public ArrayList<ICard> getDiscardCards(){
         return this.discard;
