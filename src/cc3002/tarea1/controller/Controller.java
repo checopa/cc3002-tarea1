@@ -12,7 +12,8 @@ public class Controller {
     private Trainer trainerplaying;
     private Trainer trainernotplaying;
     private boolean stealdeck;
-    private boolean turnfinish;
+    private boolean energyplayed;
+    private boolean supportplayed;
 
     public Controller(Trainer firstTrainer,Trainer secondTrainer){
         trainerplaying=firstTrainer;
@@ -21,14 +22,15 @@ public class Controller {
         trainernotplaying.setController(this);
         trainerplaying.setOpponent(trainernotplaying);
         stealdeck=false;
-        turnfinish=false;
+        energyplayed=false;
+        supportplayed=false;
     }
 
     /**
      * Add a card to the trainerplaying's hand
      */
     public void addToHand(){
-        if(!turnfinish || !stealdeck) {
+        if(!stealdeck) {
             trainerplaying.addToHand(1);
             stealdeck = true;
         }
@@ -39,10 +41,7 @@ public class Controller {
      * @return trainerplaying's hand
      */
     public ArrayList<ICard> getHand(){
-        if(!turnfinish){
-            return trainerplaying.getHand();
-        }
-        return null;
+        return trainerplaying.getHand();
     }
 
     /**
@@ -50,10 +49,7 @@ public class Controller {
      * @return trainerplaying's bench
      */
     public ArrayList<IPokemon> getBench(){
-        if(!turnfinish){
-            return trainerplaying.getBench();
-        }
-        return null;
+        return trainerplaying.getBench();
     }
 
     /**
@@ -61,10 +57,7 @@ public class Controller {
      * @return trainerplaying's active pokemon
      */
     public IPokemon getActivePokemon(){
-        if(!turnfinish){
-            return trainerplaying.getActivePokemon();
-        }
-        return null;
+        return trainerplaying.getActivePokemon();
     }
 
     /**
@@ -72,10 +65,7 @@ public class Controller {
      * @return trainernotplaying's bench
      */
     public ArrayList<IPokemon> getOpponentBench(){
-        if(!turnfinish){
-            return trainernotplaying.getBench();
-        }
-        return null;
+        return trainernotplaying.getBench();
     }
 
     /**
@@ -83,10 +73,7 @@ public class Controller {
      * @return trainernotplaying's active pokemon
      */
     public IPokemon getOpponentActivePokemon(){
-        if(!turnfinish){
-            return trainerplaying.getActivePokemon();
-        }
-        return null;
+        return trainernotplaying.getActivePokemon();
     }
 
     /**
@@ -94,9 +81,7 @@ public class Controller {
      * @param card card that is used
      */
     public void setSelectedCard(ICard card){
-        if(!turnfinish){
-            trainerplaying.setSelectedCard(card);
-        }
+        trainerplaying.setSelectedCard(card);
     }
 
     /**
@@ -104,19 +89,14 @@ public class Controller {
      * @return card that is used
      */
     public ICard getSelectedCard(){
-        if(!turnfinish){
-            return trainerplaying.getSelectedCard();
-        }
-        return null;
+        return trainerplaying.getSelectedCard();
     }
     /**
      * Select pokemon that receive energies, a evolution or a object
      * @param Pokemon pokemon that receive energy, a evolution or a object
      */
     public void setSelectedPokemon(IPokemon Pokemon){
-        if(!turnfinish){
-            trainerplaying.setSelectedPokemon(Pokemon);
-        }
+        trainerplaying.setSelectedPokemon(Pokemon);
     }
 
     /**
@@ -124,55 +104,42 @@ public class Controller {
      * @return pokemon that receive energy,a evolution or a object
      */
     public IPokemon getSelectedPokemon(){
-        if(!turnfinish){
-            return trainerplaying.getSelectedPokemon();
-        }
-        return null;
+        return trainerplaying.getSelectedPokemon();
     }
 
     /**
      * Deselect a card
      */
     public void deselectCard(){
-        if(!turnfinish){
-            trainerplaying.deselectedCard();
-        }
+        trainerplaying.deselectedCard();
     }
 
     /**
      * Deselect a pokemon
      */
     public void deselectPokemon(){
-        if(!turnfinish){
-            trainerplaying.deselectedPokemon();
-        }
+        trainerplaying.deselectedPokemon();
     }
 
     /**
      * trainerplaying play a card
      */
     public void playCard(){
-        if(!turnfinish){
-            trainerplaying.playCard();
-        }
+        trainerplaying.playCard();
     }
 
     /**
      * trainerplaying do a stadium effect
      */
     public void doStadiumEffect(){
-        if(!turnfinish){
-            trainerplaying.doStadiumEffect();
-        }
+        trainerplaying.doStadiumEffect();
     }
 
     /**
      * throw a coin
      */
     public void throwCoin(){
-        if(!turnfinish){
-            trainerplaying.throwCoin();
-        }
+        trainerplaying.throwCoin();
     }
 
     /**
@@ -180,10 +147,7 @@ public class Controller {
      * @return coin value
      */
     public int getCoin(){
-        if(!turnfinish){
-            return trainerplaying.getCoin();
-        }
-        return 0;
+        return trainerplaying.getCoin();
     }
 
     /**
@@ -191,10 +155,7 @@ public class Controller {
      * @return active pokemon's abilities
      */
     public ArrayList<IAbility> getAbilitiesPokemon(){
-        if(!turnfinish){
-            return trainerplaying.getAbilitiesPokemon();
-        }
-        return null;
+        return trainerplaying.getAbilitiesPokemon();
     }
 
     /**
@@ -202,9 +163,7 @@ public class Controller {
      * @param i ability's index
      */
     public void selectAbility(int i){
-        if(!turnfinish){
-            trainerplaying.selectAbilityPokemon(i);
-        }
+        trainerplaying.selectAbilityPokemon(i);
     }
 
     /**
@@ -212,19 +171,14 @@ public class Controller {
      * @return Ability selected
      */
     public IAbility getSelectAbility(){
-        if(!turnfinish){
-            return trainerplaying.getSelectedAbilityPokemon();
-        }
-        return null;
+        return trainerplaying.getSelectedAbilityPokemon();
     }
 
     /**
      * trainer use tha ability select
      */
     public void useAbility(){
-        if(!turnfinish){
-            trainerplaying.useAbility();
-        }
+        trainerplaying.useAbility();
     }
 
     /**
@@ -232,28 +186,62 @@ public class Controller {
      * @param i cards that is added to a list of prize
      */
     public void addtoPrize(int i){
-        if(!turnfinish){
-            trainerplaying.addToPrize(i);
-        }
+        trainerplaying.addToPrize(i);
     }
 
     /**
      * Now it's turn of trainernotplaying
      */
     public void changeTurn(){
-        if(!turnfinish){
-            Trainer aux=trainerplaying;
-            trainernotplaying=aux;
-            trainerplaying=trainerplaying;
-        }
+        Trainer aux = trainerplaying;
+        trainerplaying = trainernotplaying;
+        trainernotplaying = aux;
+        this.stealdeck=false;
+        this.energyplayed=false;
+        this.supportplayed=false;
     }
 
     /**
      * finish turn of trainerplayin
      */
     public void finishTurn(){
-        if(!turnfinish){
-            this.turnfinish=true;
-        }
+        this.changeTurn();
+    }
+
+    public void energyPlay(){
+        this.energyplayed=true;
+    }
+
+    public void supportPLay(){
+        this.supportplayed=true;
+    }
+
+    public boolean getEnergyPlayed(){
+        return this.energyplayed;
+    }
+
+    public boolean getSupportPlayed(){
+        return this.supportplayed;
+    }
+
+    /**
+     * Getter for the trainer that is playing
+     * @return trainer that is playing
+     */
+    public Trainer getTrainerPlaying(){
+        return this.trainerplaying;
+    }
+
+    /**
+     * Getter for the trainer that is not playing
+     * @return trainer that is not playing
+     */
+    public Trainer getTrainerNotPlaying(){
+        return this.trainernotplaying;
+    }
+
+    public boolean canUseAbility(){
+        return this.trainerplaying.canUseAbility();
+
     }
 }

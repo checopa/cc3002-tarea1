@@ -209,11 +209,6 @@ public interface IPokemon extends ICard {
      */
     void setEnergies(Map<String, Integer> energies);
 
-    /**
-     * Return if the pokemon has enough energy to attack
-     * @return trus if the pokemon can attack, false if not
-     */
-    boolean cantAttack();
 
     /**
      * Whether the entity is alive or not

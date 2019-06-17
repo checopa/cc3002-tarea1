@@ -12,6 +12,7 @@ import cc3002.tarea1.visitor.Visitor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author José Pacheco
@@ -208,7 +209,7 @@ public class Trainer {
      * do the effect of the stadium card
      */
     public void doStadiumEffect(){
-        stadiumTrainer.getEffect().doEffect(this);
+        this.stadiumTrainer.getEffect().doEffect(this);
     }
 
 
@@ -340,4 +341,37 @@ public class Trainer {
     public Controller getController(){
         return this.controller;
     }
+
+    /**
+     * Return if the pokemon has enough energy to use an ability
+     * @return trus if the pokemon can use an ability, false if not
+     */
+    public boolean canUseAbility(){
+        return getSelectedAbilityPokemon().getFightingCost() <= activePokemon.getFightingEnergy() && getSelectedAbilityPokemon().getFireCost() <= activePokemon.getFireEnergy()
+                && getSelectedAbilityPokemon().getGrassCost() <= activePokemon.getGrassEnergy() && getSelectedAbilityPokemon().getPsychicCost() <= activePokemon.getPsychicEnergy()
+                && getSelectedAbilityPokemon().getLightingCost() <= activePokemon.getLightingEnergy() && getSelectedAbilityPokemon().getWaterCost() <= activePokemon.getWaterEnergy();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Trainer)) return false;
+        Trainer trainer = (Trainer) o;
+        return getCoin() == trainer.getCoin() &&
+                Objects.equals(getName(), trainer.getName()) &&
+                Objects.equals(getSelectedPokemon(), trainer.getSelectedPokemon()) &&
+                Objects.equals(getSelectedCard(), trainer.getSelectedCard()) &&
+                Objects.equals(getDeck(), trainer.getDeck()) &&
+                Objects.equals(getHand(), trainer.getHand()) &&
+                Objects.equals(discard, trainer.discard) &&
+                Objects.equals(getPrizecard(), trainer.getPrizecard()) &&
+                Objects.equals(getActivePokemon(), trainer.getActivePokemon()) &&
+                Objects.equals(getBench(), trainer.getBench()) &&
+                Objects.equals(visitplaycard, trainer.visitplaycard) &&
+                Objects.equals(visitAbility, trainer.visitAbility) &&
+                Objects.equals(stadiumTrainer, trainer.stadiumTrainer) &&
+                Objects.equals(getOpponent(), trainer.getOpponent()) &&
+                Objects.equals(getController(), trainer.getController());
+    }
+
 }

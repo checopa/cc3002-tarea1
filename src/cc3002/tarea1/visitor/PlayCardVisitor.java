@@ -31,8 +31,11 @@ public class PlayCardVisitor extends Visitor {
     @Override
     public void visitEnergy(IEnergy energy){
         Trainer trainer=energy.getTrainer();
-        energy.useEnergyCard(energy.getTrainer().getSelectedPokemon());
-        trainer.getHand().remove(energy);
+        if(!trainer.getController().getEnergyPlayed()) {
+            energy.useEnergyCard(energy.getTrainer().getSelectedPokemon());
+            trainer.getHand().remove(energy);
+            trainer.getController().energyPlay();
+        }
     }
 
     public void visitPhaseOnePokemon(IPhaseOnePokemon pokemon){
@@ -69,8 +72,11 @@ public class PlayCardVisitor extends Visitor {
     @Override
     public void visitSupportTrainer(SupportTrainer supportTrainer){
         Trainer trainer=supportTrainer.getTrainer();
-        supportTrainer.getEffect().doEffect(trainer);
-        trainer.getHand().remove(supportTrainer);
+        if(!trainer.getController().getSupportPlayed()) {
+            supportTrainer.getEffect().doEffect(trainer);
+            trainer.getHand().remove(supportTrainer);
+            trainer.getController().supportPLay();
+        }
     }
 
     /**

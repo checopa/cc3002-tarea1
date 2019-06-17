@@ -9,8 +9,10 @@ public class PlayAbilityVisitor extends Visitor {
     @Override
     public void visitAttack(Attack attack){
         Trainer trainer=attack.getTrainer();
-        attack.getEffect().doEffect(trainer);
-        trainer.attackTrainer(trainer.getOpponent());
+        if(trainer.canUseAbility()) {
+            attack.getEffect().doEffect(trainer);
+            trainer.attackTrainer(trainer.getOpponent());
+        }
         trainer.getController().changeTurn();
 
     }
@@ -18,7 +20,9 @@ public class PlayAbilityVisitor extends Visitor {
     @Override
     public void visitAbility(Ability ability){
         Trainer trainer=ability.getTrainer();
-        ability.getEffect().doEffect(trainer);
+        if(trainer.canUseAbility()) {
+            ability.getEffect().doEffect(trainer);
+        }
     }
 
 }

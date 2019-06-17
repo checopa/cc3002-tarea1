@@ -41,15 +41,15 @@ import java.util.HashMap;
 import static org.junit.Assert.*;
 
 public class Test1 {
-    Attack firstAttack, secondAttack, thirdAttack, fourthAttack,fifthAttack,sixthAttack;
-    IPokemon fightingPokemon, psychicPokemon, grassPokemon,waterPokemon,water2Pokemon,water3Pokemon,grass2Pokemon;
-    Trainer firstTrainer, secondTrainer,thirdTrainer,fourthTrainer,fifthTrainer,sixthTrainer;
-    HashMap<String,Integer> firstCost,secondCost,thirdCost,fourthCost;
-    IEnergy waterEnergy,grassEnergy,fireEnergy,fightingEnergy,psychicEnergy,lightingEnergy;
-    IEffect nulleffect,profesorjuniper,greatballeffect,luckystadium,electricshock,wingbuzz;
-    AbstractTrainerCard supportTrainer ,objectTrainer,stadiumTrainer;
-    Ability firstability;
-    Controller controller;
+    private Attack firstAttack, secondAttack, thirdAttack, fourthAttack,fifthAttack,sixthAttack;
+    private IPokemon fightingPokemon, psychicPokemon, grassPokemon,waterPokemon,water2Pokemon,water3Pokemon,grass2Pokemon;
+    private Trainer firstTrainer, secondTrainer,thirdTrainer,fourthTrainer,fifthTrainer,sixthTrainer;
+    private HashMap<String,Integer> firstCost,secondCost,thirdCost,fourthCost;
+    private IEnergy waterEnergy,grassEnergy,fireEnergy,fightingEnergy,psychicEnergy,lightingEnergy;
+    private IEffect nulleffect,profesorjuniper,greatballeffect,luckystadium,electricshock,wingbuzz;
+    private AbstractTrainerCard supportTrainer ,objectTrainer,stadiumTrainer;
+    private Ability firstability;
+    private Controller controller;
 
 
     @Before
@@ -68,12 +68,12 @@ public class Test1 {
         fourthAttack=new Attack("Fourth",20,"Fourth Attack",fourthCost=new HashMap<String,Integer>(){{put("Water",0);put("Fire",0);put("Fighting",0);put("Grass",0);put("Psychic",0);put("Lighting",0);}},nulleffect);
         fifthAttack=new Attack("Fifth",20,"Fifth Attack",fourthCost=new HashMap<String,Integer>(){{put("Water",0);put("Fire",0);put("Fighting",0);put("Grass",0);put("Psychic",0);put("Lighting",0);}},nulleffect);
         sixthAttack=new Attack("Fifth",20,"Fifth Attack",fourthCost=new HashMap<String,Integer>(){{put("Water",0);put("Fire",0);put("Fighting",0);put("Grass",0);put("Psychic",0);put("Lighting",0);}},electricshock);
-        fightingPokemon=new BasicFightingPokemon("Fighting",001,300,new ArrayList<>(Arrays.asList(fourthAttack,firstAttack,secondAttack,thirdAttack,fifthAttack)));
-        psychicPokemon=new BasicPsychicPokemon("Psychic",002,100,new ArrayList<>(Arrays.asList(fourthAttack,thirdAttack,firstAttack)));
+        fightingPokemon=new BasicFightingPokemon("Fighting",1,300,new ArrayList<>(Arrays.asList(fourthAttack,firstAttack,secondAttack,thirdAttack,fifthAttack)));
+        psychicPokemon=new BasicPsychicPokemon("Psychic",2,100,new ArrayList<>(Arrays.asList(fourthAttack,thirdAttack,firstAttack)));
         grassPokemon=new BasicGrassPokemon("Grass",003,100,new ArrayList<>(Arrays.asList(fourthAttack,secondAttack,thirdAttack)));
         waterPokemon=new BasicWaterPokemon("Water",004,100,new ArrayList<>(Arrays.asList(fourthAttack,thirdAttack,firstAttack)));
-        water2Pokemon=new PhaseOneWaterPokemon("Water2",005,100,new ArrayList<>(Arrays.asList(fourthAttack,thirdAttack,secondAttack,firstAttack)),004);
-        water3Pokemon=new PhaseTwoWaterPokemon("Water3",006,100,new ArrayList<>(Arrays.asList(fourthAttack,thirdAttack,secondAttack,firstAttack)),005);
+        water2Pokemon=new PhaseOneWaterPokemon("Water2",5,100,new ArrayList<>(Arrays.asList(fourthAttack,thirdAttack,secondAttack,firstAttack)),4);
+        water3Pokemon=new PhaseTwoWaterPokemon("Water3",6,100,new ArrayList<>(Arrays.asList(fourthAttack,thirdAttack,secondAttack,firstAttack)),5);
         grass2Pokemon=new BasicGrassPokemon("Grass",8,100,new ArrayList<>(Arrays.asList(sixthAttack,firstability)));
         supportTrainer=new SupportTrainer("support","support",profesorjuniper);
         objectTrainer=new ObjectTrainer("object","object",greatballeffect);
@@ -119,12 +119,18 @@ public class Test1 {
         firstTrainer.setSelectedPokemon(firstTrainer.getActivePokemon());
         firstTrainer.playCard();
         firstTrainer.deselectedCard();
+        controller.changeTurn();
+        controller.changeTurn();
         firstTrainer.setSelectedCard(firstTrainer.getHand().get(0));
         firstTrainer.playCard();
         firstTrainer.deselectedCard();
+        controller.changeTurn();
+        controller.changeTurn();
         firstTrainer.setSelectedCard(firstTrainer.getHand().get(0));
         firstTrainer.playCard();
         firstTrainer.deselectedCard();
+        controller.changeTurn();
+        controller.changeTurn();
         assertEquals(1,firstTrainer.getActivePokemon().getWaterEnergy());
         assertEquals(1,firstTrainer.getActivePokemon().getGrassEnergy());
         assertEquals(1,firstTrainer.getActivePokemon().getFireEnergy());

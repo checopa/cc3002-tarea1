@@ -12,6 +12,7 @@ import cc3002.tarea1.cards.pokemon.fighting.BasicFightingPokemon;
 import cc3002.tarea1.cards.pokemon.grass.BasicGrassPokemon;
 import cc3002.tarea1.cards.pokemon.psychic.BasicPsychicPokemon;
 import cc3002.tarea1.cards.pokemon.water.BasicWaterPokemon;
+import cc3002.tarea1.controller.Controller;
 import cc3002.tarea1.effects.IEffect;
 import cc3002.tarea1.effects.NullEffect;
 import cc3002.tarea1.habilities.Attack;
@@ -33,6 +34,7 @@ public class BigFightingTest {
     HashMap<String,Integer> firstCost,secondCost,thirdCost,fourthCost;
     IEnergy waterEnergy,grassEnergy,fireEnergy,fightingEnergy,psychicEnergy,lightingEnergy;
     IEffect nulleffect;
+    Controller controller;
 
     @Before
     public void setUp(){
@@ -55,6 +57,7 @@ public class BigFightingTest {
         lightingEnergy=new LightingEnergy("Lighting");
         firstTrainer=new Trainer("Ash",new ArrayList<>(Arrays.asList(fightingPokemon,water2Pokemon,waterEnergy,grassEnergy,fireEnergy,fightingEnergy,lightingEnergy,psychicEnergy)));
         secondTrainer=new Trainer("Ashn't",new ArrayList<>(Arrays.asList(waterPokemon,psychicPokemon,grassPokemon,waterEnergy,grassEnergy,fireEnergy,fightingEnergy,psychicEnergy,lightingEnergy)));
+        controller=new Controller(firstTrainer,secondTrainer);
     }
 
     @Test
@@ -86,7 +89,7 @@ public class BigFightingTest {
         assertEquals("Fourth Attack",firstTrainer.getActivePokemon().getSelectedAbility().getDescription());
         assertEquals(fourthAttack,firstTrainer.getSelectedAbilityPokemon());
         assertNotEquals(firstAttack,secondTrainer.getSelectedAbilityPokemon());
-        assertNotEquals(false,secondTrainer.getActivePokemon().cantAttack());
+        assertNotEquals(false,secondTrainer.canUseAbility());
         secondTrainer.attackTrainer(firstTrainer);
         assertEquals(280,firstTrainer.getActivePokemon().getHP());
         firstTrainer.addToHand(6);
@@ -94,21 +97,25 @@ public class BigFightingTest {
         for(int i=0;i<6;i++) {
             firstTrainer.setSelectedCard(firstTrainer.getHand().get(0));
             firstTrainer.playCard();
+            controller.changeTurn();
+            controller.changeTurn();
         }
         firstTrainer.selectAbilityPokemon(1);
         for (int i=0;i<10;i++) {
             firstTrainer.attackTrainer(secondTrainer);
         }
         secondTrainer.selectAbilityPokemon(1);
-        assertEquals(false,secondTrainer.getActivePokemon().cantAttack());
+        assertEquals(false,secondTrainer.canUseAbility());
         secondTrainer.addToHand(6);
         secondTrainer.setSelectedPokemon(secondTrainer.getActivePokemon());
         for(int i=0;i<6;i++) {
             secondTrainer.setSelectedCard(secondTrainer.getHand().get(0));
             secondTrainer.playCard();
+            controller.changeTurn();
+            controller.changeTurn();
         }
 
-        assertEquals(true,secondTrainer.getActivePokemon().cantAttack());
+        assertEquals(true,secondTrainer.canUseAbility());
         secondTrainer.attackTrainer(firstTrainer);
         assertEquals(180,firstTrainer.getActivePokemon().getHP());
         for (int i=0;i<10;i++) {

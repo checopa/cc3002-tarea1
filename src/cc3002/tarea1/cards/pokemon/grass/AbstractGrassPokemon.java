@@ -22,9 +22,7 @@ public abstract class AbstractGrassPokemon extends AbstractPokemon {
 
     @Override
     public void attack(IPokemon pokemon) {
-        if (this.cantAttack()) {
-            pokemon.receiveGrassAttack(this);
-        }
+        pokemon.receiveGrassAttack(this);
     }
 
     @Override

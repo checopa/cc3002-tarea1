@@ -21,9 +21,7 @@ public abstract class AbstractPsychicPokemon extends AbstractPokemon {
 
     @Override
     public void attack(IPokemon pokemon) {
-        if(this.cantAttack()) {
-            pokemon.receivePsychicAttack(this);
-        }
+        pokemon.receivePsychicAttack(this);
     }
 
     @Override

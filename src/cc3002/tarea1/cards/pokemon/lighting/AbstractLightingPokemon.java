@@ -21,9 +21,7 @@ public abstract class AbstractLightingPokemon extends AbstractPokemon {
 
     @Override
     public void attack(IPokemon pokemon) {
-        if(this.cantAttack()) {
-            pokemon.receiveLightingAttack(this);
-        }
+        pokemon.receiveLightingAttack(this);
     }
 
     @Override

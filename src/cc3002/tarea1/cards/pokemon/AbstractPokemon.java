@@ -158,12 +158,6 @@ public abstract class AbstractPokemon extends AbstractCard implements IPokemon,I
         }
     }
 
-    @Override
-    public boolean cantAttack() {
-        return getSelectedAbility().getFightingCost() <= getFightingEnergy() && getSelectedAbility().getFireCost() <= getFireEnergy()
-                && getSelectedAbility().getGrassCost() <= getGrassEnergy() && getSelectedAbility().getPsychicCost() <= getPsychicEnergy()
-                && getSelectedAbility().getLightingCost() <= getLightingEnergy() && getSelectedAbility().getWaterCost() <= getWaterEnergy();
-    }
 //endregion
 
     //region Energy
