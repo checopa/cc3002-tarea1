@@ -14,6 +14,7 @@ import java.util.Map;
 
 public class PlayCardVisitor extends Visitor {
 
+    @Override
     public void visitBasicPokemon(IBasicPokemon pokemon){
         Trainer trainer=pokemon.getTrainer();
 
@@ -27,6 +28,7 @@ public class PlayCardVisitor extends Visitor {
 
     }
 
+    @Override
     public void visitEnergy(IEnergy energy){
         Trainer trainer=energy.getTrainer();
         energy.useEnergyCard(energy.getTrainer().getSelectedPokemon());
@@ -40,6 +42,7 @@ public class PlayCardVisitor extends Visitor {
         trainer.getHand().remove(pokemon);
     }
 
+    @Override
     public void visitPhaseTwoPokemon(IPhaseTwoPokemon pokemon){
         Trainer trainer=pokemon.getTrainer();
         int idpreevolution=pokemon.getPreEvolutionId();
@@ -47,27 +50,33 @@ public class PlayCardVisitor extends Visitor {
         trainer.getHand().remove(pokemon);
     }
 
+    @Override
     public void visitObjectCard(ObjectTrainer objectTrainer){
         Trainer trainer=objectTrainer.getTrainer();
-        //codigo
+        objectTrainer.getEffect().doEffect(trainer);
         trainer.getHand().remove(objectTrainer);
     }
 
+    @Override
     public void visitStadiumCard(StadiumTrainer stadiumTrainer){
         Trainer trainer=stadiumTrainer.getTrainer();
+        Trainer trainerOpponent=stadiumTrainer.getTrainer().getOpponent();
         trainer.setStadiumCard(stadiumTrainer);
+        trainerOpponent.setStadiumCard(stadiumTrainer);
         trainer.getHand().remove(stadiumTrainer);
-
     }
 
+    @Override
     public void visitSupportTrainer(SupportTrainer supportTrainer){
         Trainer trainer=supportTrainer.getTrainer();
         supportTrainer.getEffect().doEffect(trainer);
         trainer.getHand().remove(supportTrainer);
     }
 
-
-
+    /**
+     * add energies to pokemon of the preevolution of pokemon
+     * @param pokemon pokemon that receive the energy
+     */
     public void addEnergies(IPokemon pokemon){
         Trainer trainer=pokemon.getTrainer();
         Map<String, Integer> energies;
@@ -75,6 +84,11 @@ public class PlayCardVisitor extends Visitor {
         pokemon.setEnergies(energies);
     }
 
+    /**
+     * change a pokemon for its evolution
+     * @param pokemon evolution of the pokemon that is evolving
+     * @param idpreevolution id of the preevolution of pokemon
+     */
     private void changePokemon(IPokemon pokemon, int idpreevolution) {
         Trainer trainer=pokemon.getTrainer();
         if(trainer.getSelectedPokemon().equals(trainer.getActivePokemon()) && idpreevolution==trainer.getSelectedPokemon().getId()){

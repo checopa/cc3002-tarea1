@@ -11,7 +11,7 @@ import cc3002.tarea1.cards.trainercard.SupportTrainer;
 import cc3002.tarea1.habilities.Ability;
 import cc3002.tarea1.habilities.Attack;
 
-public class Visitor {
+public abstract class Visitor {
 
 
     public void visitBasicPokemon(IBasicPokemon pokemon){}

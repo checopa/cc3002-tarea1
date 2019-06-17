@@ -131,35 +131,23 @@ public abstract class AbstractPokemon extends AbstractCard implements IPokemon,I
         this.receiveAttack(attack);
     }
 
-    /**
-     * Receive an attack
-     *
-     * @param attack Received attack
-     */
-    protected void receiveAttack(IPokemon attack) {
+    @Override
+    public void receiveAttack(IPokemon attack) {
         this.hp -= attack.getSelectedAbility().getBaseDamage();
         if(!isAlive()){
             this.hp=0;
         }
     }
 
-    /**
-     * Receives an attack to which this Pokémon is weak.
-     *
-     * @param attack Received attack.
-     */
-    protected void receiveWeaknessAttack(IPokemon attack) {
+    @Override
+    public void receiveWeaknessAttack(IPokemon attack) {
         this.hp -= attack.getSelectedAbility().getBaseDamage() * 2;
         if(!isAlive()){
             this.hp=0;
         }
     }
 
-    /**
-     * Receives an attack to which this Pokémon is resistant.
-     *
-     * @param attack Received attack
-     */
+    @Override
     public void receiveResistantAttack(IPokemon attack) {
         int hit=attack.getSelectedAbility().getBaseDamage()-30;
         if(hit>0){

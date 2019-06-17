@@ -4,6 +4,7 @@ import cc3002.tarea1.cards.ICard;
 import cc3002.tarea1.cards.pokemon.IPokemon;
 import cc3002.tarea1.cards.trainercard.AbstractTrainerCard;
 import cc3002.tarea1.cards.trainercard.StadiumTrainer;
+import cc3002.tarea1.controller.Controller;
 import cc3002.tarea1.habilities.IAbility;
 import cc3002.tarea1.visitor.PlayAbilityVisitor;
 import cc3002.tarea1.visitor.PlayCardVisitor;
@@ -23,13 +24,15 @@ public class Trainer {
     private ArrayList<ICard> deck;
     private ArrayList<ICard> hand=new ArrayList<>();
     private ArrayList<ICard> discard=new ArrayList<>();
-    private ArrayList<ICard> prizecard;
+    private ArrayList<ICard> prizecard=new ArrayList<>();
     private IPokemon activePokemon;
     private ArrayList<IPokemon> bench=new ArrayList<>();
     private Visitor visitplaycard;
     private Visitor visitAbility;
     private AbstractTrainerCard stadiumTrainer;
     private Trainer opponent;
+    private int coin;
+    private Controller controller;
 
     /**
      * Create a new trainer
@@ -41,8 +44,9 @@ public class Trainer {
         this.deck=deck;
         visitplaycard=new PlayCardVisitor();
         visitAbility=new PlayAbilityVisitor();
-        if(60<this.deck.size()){
-            for(int i=0;i<(this.deck.size()-4);i++){
+        int size=this.deck.size();
+        if(60<size){
+            for(int i=0;i<(size-60);i++){
                 this.deck.remove(60);
             }
 
@@ -86,18 +90,37 @@ public class Trainer {
     /**
      * Add six cards to list of prize.
      */
-    public void addToPrize(){
-        if(prizecard.size()<6){
-            for(int i=0;i<6;i++){
+    public void addToPrize(int n){
+        for(int i=0;i<n;i++){
+            if(prizecard.size()<6){
                 this.prizecard.add(draw());
             }
         }
     }
 
-    public void setOpponent(Trainer trainer){
-        this.opponent=trainer;
+    /**
+     * Getter for the list of prize
+     * @return list of prize
+     */
+    public ArrayList<ICard> getPrizecard() {
+        return prizecard;
     }
 
+    /**
+     * Setter for the trainer's opponent
+     * @param trainer trainer's opponent
+     */
+    public void setOpponent(Trainer trainer){
+        this.opponent=trainer;
+        if(this.opponent.getOpponent()==null) {
+            this.opponent.setOpponent(this);
+        }
+    }
+
+    /**
+     * Getter for the trainer's opponent
+     * @return trainer's opponent
+     */
     public Trainer getOpponent(){
         return this.opponent;
     }
@@ -159,35 +182,47 @@ public class Trainer {
         }
     }
 
+    /**
+     * trainer play a card
+     */
     public void playCard(){
-        this.selectedCard.accept(this.visitplaycard);
+        this.getSelectedCard().accept(this.visitplaycard);
     }
 
-
+    /**
+     * trainer use tha ability select
+     */
     public void useAbility(){
         this.getSelectedAbilityPokemon().accept(this.visitAbility);
     }
 
+    /**
+     * Set a stadium card
+     * @param stadiumTrainer stadium card
+     */
     public void setStadiumCard(StadiumTrainer stadiumTrainer){
         this.stadiumTrainer=stadiumTrainer;
     }
 
+    /**
+     * do the effect of the stadium card
+     */
     public void doStadiumEffect(){
         stadiumTrainer.getEffect().doEffect(this);
     }
 
 
     /**
-     * Getter for the active pokemon's attacks
-     * @return active pokemon's attacks
+     * Getter for the active pokemon's abilities
+     * @return active pokemon's abilities
      */
-    public List<IAbility> getAbilitiesPokemon(){
+    public ArrayList<IAbility> getAbilitiesPokemon(){
         return this.activePokemon.getAbilities();
     }
 
     /**
-     * Select attack for the pokemon
-     * @param index attack's index
+     * Select ability for the pokemon
+     * @param index ability's index
      */
     public void selectAbilityPokemon(int index){
 
@@ -196,8 +231,8 @@ public class Trainer {
     }
 
     /**
-     *Getter for the attack selected
-     * @return Attack selected
+     *Getter for the ability selected
+     * @return Ability selected
      */
     public IAbility getSelectedAbilityPokemon(){
         return this.activePokemon.getSelectedAbility();
@@ -207,7 +242,7 @@ public class Trainer {
      * Getter for the trainer's hand
      * @return trainer's hand
      */
-    public List<ICard> getHand(){
+    public ArrayList<ICard> getHand(){
         return this.hand;
     }
 
@@ -236,7 +271,7 @@ public class Trainer {
      * Getter for the trainer's bench
      * @return Trainer's bench
      */
-    public List<IPokemon> getBench(){
+    public ArrayList<IPokemon> getBench(){
         return this.bench;
     }
 
@@ -249,6 +284,10 @@ public class Trainer {
         return this.discard;
     }
 
+    /**
+     * Add pokemon to the bench
+     * @param pokemon pokemon that is added to the bench
+     */
     public void addToBench(IPokemon pokemon){
         this.bench.add(pokemon);
     }
@@ -262,6 +301,43 @@ public class Trainer {
         bench.remove(0);
     }
 
+    /**
+     * Throw a coin
+     */
+    public void throwCoin(){
+        // 0 es cara y 1 es sello
+        this.coin = (int) (Math.random()+0.5);
+    }
 
+    /**
+     * Getter for the coin value
+     * @return coin value
+     */
+    public int getCoin(){
+        return this.coin;
+    }
 
+    /**
+     * Getter for the trainer's deck
+     * @return trainer's deck
+     */
+    public ArrayList<ICard> getDeck() {
+        return deck;
+    }
+
+    /**
+     * Setter for the controller's trainer
+     * @param controller controller's trainer
+     */
+    public void setController(Controller controller){
+        this.controller=controller;
+    }
+
+    /**
+     * Getter for the controller's trainer
+     * @return controller's trainer
+     */
+    public Controller getController(){
+        return this.controller;
+    }
 }

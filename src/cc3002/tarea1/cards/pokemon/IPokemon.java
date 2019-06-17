@@ -14,6 +14,7 @@ import cc3002.tarea1.habilities.Attack;
 import cc3002.tarea1.habilities.IAbility;
 import cc3002.tarea1.visitor.Visitor;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -37,7 +38,7 @@ public interface IPokemon extends ICard {
      * Getter for the pokemon's abilities
      * @return Abilities of the pokemon
      */
-    List<IAbility> getAbilities();
+    ArrayList<IAbility> getAbilities();
 
     /**
      * Getter for the ability selected
@@ -110,7 +111,26 @@ public interface IPokemon extends ICard {
     void receivePsychicAttack(AbstractPsychicPokemon attack);
 
 
-    void receiveResistantAttack(IPokemon attack);
+    /**
+     * Receive an attack
+     *
+     * @param attack Received attack
+     */
+    void receiveAttack(IPokemon attack);
+
+    /**
+     * Receives an attack to which this Pokémon is weak.
+     *
+     * @param attack Received attack.
+     */
+    void receiveWeaknessAttack(IPokemon attack);
+
+    /**
+     * Receives an attack to which this Pokémon is resistant.
+     *
+     * @param attack Received attack
+     */
+    void receiveResistantAttack(IPokemon attack) ;
 
     /**
      * Receive Lighting energy

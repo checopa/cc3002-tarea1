@@ -3,6 +3,8 @@ package cc3002.tarea1.cards.trainercard;
 import cc3002.tarea1.cards.AbstractCard;
 import cc3002.tarea1.effects.IEffect;
 
+import java.util.Objects;
+
 public abstract class AbstractTrainerCard extends AbstractCard implements ITrainerCard {
     private String name;
     private String description;
@@ -25,7 +27,6 @@ public abstract class AbstractTrainerCard extends AbstractCard implements ITrain
     public IEffect getEffect(){
         return this.effect;
     }
-
 
 
 }
