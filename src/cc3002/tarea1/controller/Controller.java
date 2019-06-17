@@ -28,6 +28,7 @@ public class Controller {
 
     /**
      * Add a card to the trainerplaying's hand
+     *
      */
     public void addToHand(){
         if(!stealdeck) {
